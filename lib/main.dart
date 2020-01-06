@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/values/theme.dart';
+import 'package:e_commerce/ui/pages/auth/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-      body: Center(
-        child: Text('199'),
-      ),
+      body: LoginPage(),
     ));
   }
 }

@@ -1,10 +1,13 @@
-const dimen = {
-  'primaryIconSize': 24.0,
-  'secondaryIconSize': 16.0,
-  'largeIconSize': 30.0,
-  'headlineTextSize': 22.0,
-  'titleTextSize': 16.0,
-  'bodyTextSize': 14.0,
-  'smallBodyTextSize': 12.0,
-  'appBarElevation': 1.0
-};
+const primaryIconSize = 24.0;
+const secondaryIconSize = 16.0;
+const largeIconSize = 30.0;
+const headlineTextSize = 22.0;
+const titleTextSize = 16.0;
+const bodyTextSize = 14.0;
+const smallBodyTextSize = 12.0;
+const appBarElevation = 1.0;
+const verticalTextSpacing = 24.0;
+const smHorizontalTextSpacing = 4.0;
+const smallSpacing = 8.0;
+const smallBorderRadius = 5.0;
+const buttonSize = 60.0;

@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/ui/pages/auth/register_page.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: LoginPage(),
+          body: RegisterPage(),
         ));
   }
 }

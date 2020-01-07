@@ -8,6 +8,7 @@ import 'package:e_commerce/ui/components/login_form.dart';
 import 'package:e_commerce/ui/components/vertical_line.dart';
 import 'package:e_commerce/values/dimen.dart';
 import 'package:e_commerce/ui/models/login_model.dart';
+import 'package:e_commerce/ui/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,7 +22,9 @@ class _LoginPageState extends State<LoginPage> {
 
   _loginWithGoogle() {}
 
-  _register() {}
+  _register() {
+    Routes.goToRegisterPage(context);
+  }
 
   _forgotPassword() {}
 

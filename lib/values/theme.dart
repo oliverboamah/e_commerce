@@ -38,7 +38,7 @@ final appTheme = ThemeData(
     focusColor: primaryColor,
     highlightColor: primaryHighlightColor,
     buttonColor: primaryColor,
-    splashColor: secondaryHighlightColor,
+    splashColor: primaryHighlightColor,
     cursorColor: primaryColor,
     indicatorColor: primaryColor,
     primaryIconTheme:

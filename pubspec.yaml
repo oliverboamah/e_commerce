@@ -64,6 +64,17 @@ flutter:
   - family: EyeOff
     fonts:
       - asset: assets/fonts/EyeOff.ttf
-
+  - family: More
+    fonts:
+      - asset: assets/fonts/More.ttf
+  - family: Home
+    fonts:
+      - asset: assets/fonts/Home.ttf
+  - family: Heart
+    fonts:
+      - asset: assets/fonts/Heart.ttf
+  - family: Notification
+    fonts:
+      - asset: assets/fonts/Notification.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

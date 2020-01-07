@@ -14,3 +14,6 @@ final successColor = Color(0xFF4CAF50);
 final warningColor = Color(0xFFFFA000);
 final dangerColor = Color(0xFFF44336);
 final dividerColor = Color(0xFF757575);
+final primaryIconColor = Color(0xFF212121);
+final bottomNavBarBackgroundColor = Color(0xFFFFFFFF);
+

@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+// flutter imports
+import 'package:flutter/widgets.dart';
 
 class VerticalLine extends StatelessWidget {
   final double length;

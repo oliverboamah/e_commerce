@@ -7,6 +7,7 @@ import 'package:e_commerce/ui/components/image_text.dart';
 import 'package:e_commerce/ui/components/login_form.dart';
 import 'package:e_commerce/ui/components/vertical_line.dart';
 import 'package:e_commerce/values/dimen.dart';
+import 'package:e_commerce/ui/models/login_model.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,6 +15,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  _onSubmit(LoginModel loginModel) {}
+
+  _loginWithFacebook() {}
+
+  _loginWithGoogle() {}
+
+  _register() {}
+
+  _forgotPassword() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +43,10 @@ class _LoginPageState extends State<LoginPage> {
                     style: Theme.of(context).textTheme.headline,
                   ),
                 ),
-                LoginForm(),
+                LoginForm(
+                  onSubmit: this._onSubmit,
+                  forgotPassword: this._forgotPassword,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -43,17 +57,19 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding:
                           const EdgeInsets.only(left: smHorizontalTextSpacing),
-                      child: Text(
-                        'Create an Account',
-                        style: Theme.of(context).textTheme.display3,
+                      child: InkWell(
+                        child: Text(
+                          'Create an Account',
+                          style: Theme.of(context).textTheme.display3,
+                        ),
+                        onTap: _register,
                       ),
                     ),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: verticalTextSpacing,
-                      bottom: 12),
+                      top: verticalTextSpacing, bottom: 12),
                   child: Text('or login with'),
                 ),
                 Padding(
@@ -61,28 +77,34 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      ImageText(
-                        image: Image.asset(
-                          'assets/images/google.png',
-                          width: largeIconSize,
+                      InkWell(
+                        child: ImageText(
+                          image: Image.asset(
+                            'assets/images/google.png',
+                            width: largeIconSize,
+                          ),
+                          text: Text(
+                            'Google',
+                            style: Theme.of(context).textTheme.title,
+                          ),
                         ),
-                        text: Text(
-                          'Google',
-                          style: Theme.of(context).textTheme.title,
-                        ),
+                        onTap: _loginWithGoogle,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: verticalTextSpacing),
                         child: VerticalLine(),
                       ),
-                      ImageText(
-                        image: Image.asset(
-                          'assets/images/facebook.png',
-                          width: largeIconSize,
+                      InkWell(
+                        child: ImageText(
+                          image: Image.asset(
+                            'assets/images/facebook.png',
+                            width: largeIconSize,
+                          ),
+                          text: Text('Facebook',
+                              style: Theme.of(context).textTheme.title),
                         ),
-                        text: Text('Facebook',
-                            style: Theme.of(context).textTheme.title),
+                        onTap: _loginWithFacebook,
                       ),
                     ],
                   ),

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-      body: LoginPage(),
-    ));
+          body: LoginPage(),
+        ));
   }
 }

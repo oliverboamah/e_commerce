@@ -12,3 +12,4 @@ const smallSpacing = 8.0;
 const smallBorderRadius = 5.0;
 const buttonSize = 60.0;
 const badgeSize = 20.0;
+const defaultWidgetPadding = 16.0;

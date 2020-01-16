@@ -1,5 +1,4 @@
 // flutter imports
-import 'package:e_commerce/ui/tabs/home_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/ui/components/bottom_navbar.dart';
 import 'package:e_commerce/values/colors.dart';
 import 'package:e_commerce/values/dimen.dart';
+import 'package:e_commerce/ui/tabs/home_tab.dart';
 
 class HomePage extends StatefulWidget {
   @override

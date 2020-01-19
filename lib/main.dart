@@ -1,4 +1,6 @@
 // flutter imports
+import 'package:e_commerce/ui/models/product_model.dart';
+import 'package:e_commerce/ui/pages/product/product_detail_page.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
@@ -17,7 +19,13 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: HomePage(),
+          body: ProductDetailPage(
+            productModel: ProductModel(
+                name: 'Lenovo x280',
+                price: '\$ 1399',
+                discount: '-37%',
+                image: 'assets/images/lenovo.jpg'),
+          ),
         ));
   }
 }

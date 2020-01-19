@@ -38,6 +38,15 @@ final appTheme = ThemeData(
         title: TextStyle(
             fontFamily: 'Raleway',
             color: secondaryTextColor,
+            fontSize: titleTextSize),
+        body1: TextStyle(
+            fontFamily: 'Raleway',
+            color: primaryColor,
+            fontSize: titleTextSize),
+        display1: TextStyle(
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.bold,
+            color: primaryTextColor,
             fontSize: titleTextSize)),
     dividerColor: dividerColor,
     focusColor: primaryColor,

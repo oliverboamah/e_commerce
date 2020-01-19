@@ -7,7 +7,7 @@ import 'package:e_commerce/ui/components/category.dart';
 import 'package:e_commerce/ui/components/search_bar.dart';
 import 'package:e_commerce/config.dart';
 import 'package:e_commerce/ui/components/horizontal_line.dart';
-import 'package:e_commerce/ui/components/products_tab.dart';
+import 'package:e_commerce/ui/tabs/products_tab.dart';
 import 'package:e_commerce/values/colors.dart';
 
 class HomeTab extends StatefulWidget {
@@ -66,7 +66,6 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
           ),
           Expanded(
             child: Container(
-              color: Colors.yellow,
               child: PageView(
                 controller: _myPage,
                 children: _getProductsTabs(),

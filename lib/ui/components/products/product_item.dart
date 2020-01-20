@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/ui/models/product_model.dart';
-import 'package:e_commerce/values/colors.dart';
+import 'package:e_commerce/ui/components/discount.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductModel productModel;
@@ -21,15 +21,9 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Spacer(),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 5.0),
-                  decoration: BoxDecoration(
-                      color: primaryHighlightColor,
-                      borderRadius: BorderRadius.circular(4.0)),
-                  child: Text(
-                    '${this.productModel.discount}',
-                    style: Theme.of(context).accentTextTheme.body1,
-                  ))
+              Discount(
+                discount: -37,
+              )
             ],
           ),
           SizedBox(

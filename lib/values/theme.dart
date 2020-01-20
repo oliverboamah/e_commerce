@@ -43,11 +43,28 @@ final appTheme = ThemeData(
             fontFamily: 'Raleway',
             color: primaryColor,
             fontSize: titleTextSize),
+        body2: TextStyle(
+            fontFamily: 'Raleway', color: linkColor, fontSize: bodyTextSize),
         display1: TextStyle(
             fontFamily: 'Raleway',
             fontWeight: FontWeight.bold,
             color: primaryTextColor,
-            fontSize: titleTextSize)),
+            fontSize: titleTextSize),
+        display2: TextStyle(
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.bold,
+            color: colorWhite,
+            fontSize: titleTextSize),
+        display3: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Raleway',
+            color: primaryColor,
+            fontSize: headlineTextSize),
+        overline: TextStyle(
+            decoration: TextDecoration.lineThrough,
+            fontFamily: 'Raleway',
+            color: secondaryTextColor,
+            fontSize: bodyTextSize)),
     dividerColor: dividerColor,
     focusColor: primaryColor,
     highlightColor: primaryHighlightColor,

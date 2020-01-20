@@ -1,5 +1,6 @@
 // flutter imports
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/values/colors.dart';
@@ -23,7 +24,10 @@ class Button extends StatelessWidget {
         child: CupertinoButton(
           minSize: buttonSize,
           color: primaryColor,
-          child: Text(this.text),
+          child: Text(
+            this.text,
+            style: Theme.of(context).accentTextTheme.display2,
+          ),
           onPressed: this.onPressed,
         ),
       ),

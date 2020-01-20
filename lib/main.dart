@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
                 name: 'Lenovo x280',
                 price: '\$ 1399',
                 discount: '-37%',
-                image: 'assets/images/lenovo.jpg'),
+                images: [
+                  'assets/images/lenovo.jpg',
+                  'assets/images/lenovo.jpg',
+                ]),
           ),
         ));
   }

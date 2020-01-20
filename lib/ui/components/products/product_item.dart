@@ -36,7 +36,7 @@ class ProductItem extends StatelessWidget {
             height: 100,
             width: 100,
             child: Image.asset(
-              this.productModel.image,
+              this.productModel.images[0],
               fit: BoxFit.fill,
             ),
           ),

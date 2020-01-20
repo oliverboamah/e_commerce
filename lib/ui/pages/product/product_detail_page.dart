@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 // my app imports
 import 'package:e_commerce/ui/components/app_bar_with_cart.dart';
 import 'package:e_commerce/ui/models/product_model.dart';
+import 'package:e_commerce/ui/components/carousel_with_indicator.dart';
+import 'package:e_commerce/values/colors.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final ProductModel productModel;
@@ -19,6 +21,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: colorWhite,
       appBar: AppBarWithCart(
         context: context,
         productModel: this.widget.productModel,
@@ -26,7 +29,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           print('cart clicked');
         },
       ),
-      body: Center(child: Text('Center')),
+      body: CarouselWithIndicator(
+        imageList: this.widget.productModel.images,
+      ),
     );
   }
 }

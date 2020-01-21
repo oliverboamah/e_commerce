@@ -7,6 +7,7 @@ import 'package:e_commerce/ui/components/bottom_navbar.dart';
 import 'package:e_commerce/values/colors.dart';
 import 'package:e_commerce/values/dimen.dart';
 import 'package:e_commerce/ui/tabs/home_tab.dart';
+import 'package:e_commerce/ui/tabs/wishlist_tab.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,11 +18,7 @@ class _HomePageState extends State<HomePage> {
   PageController _myPage = PageController(initialPage: 0);
   List<Widget> _tabs = [
     HomeTab(),
-    Center(
-      child: Container(
-        child: Text('WishList Tab'),
-      ),
-    ),
+    WishListTab(),
     Center(
       child: Container(
         child: Text('Support Tab'),

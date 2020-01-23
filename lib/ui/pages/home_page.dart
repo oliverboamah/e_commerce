@@ -1,5 +1,5 @@
 // flutter imports
-import 'package:e_commerce/ui/tabs/support_tab.dart';
+import 'package:e_commerce/ui/tabs/notification_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +9,7 @@ import 'package:e_commerce/values/colors.dart';
 import 'package:e_commerce/values/dimen.dart';
 import 'package:e_commerce/ui/tabs/home_tab.dart';
 import 'package:e_commerce/ui/tabs/wishlist_tab.dart';
+import 'package:e_commerce/ui/tabs/support_tab.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,11 +22,7 @@ class _HomePageState extends State<HomePage> {
     HomeTab(),
     WishListTab(),
     SupportTab(),
-    Center(
-      child: Container(
-        child: Text('Notification Tab'),
-      ),
-    )
+    NotificationTab()
   ];
 
   _onTabSelected(int index) {

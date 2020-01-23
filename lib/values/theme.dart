@@ -64,7 +64,9 @@ final appTheme = ThemeData(
             decoration: TextDecoration.lineThrough,
             fontFamily: 'Raleway',
             color: secondaryTextColor,
-            fontSize: bodyTextSize)),
+            fontSize: bodyTextSize),
+        caption: TextStyle(
+            fontFamily: 'Raleway', color: colorWhite, fontSize: titleTextSize)),
     dividerColor: dividerColor,
     focusColor: primaryColor,
     highlightColor: primaryHighlightColor,

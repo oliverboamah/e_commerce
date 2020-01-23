@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/ui/tabs/support_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _tabs = [
     HomeTab(),
     WishListTab(),
-    Center(
-      child: Container(
-        child: Text('Support Tab'),
-      ),
-    ),
+    SupportTab(),
     Center(
       child: Container(
         child: Text('Notification Tab'),

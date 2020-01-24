@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
-import 'package:e_commerce/ui/models/product_model.dart';
 import 'package:e_commerce/ui/components/horizontal_line.dart';
+import 'package:e_commerce/ui/models/notification_model.dart';
 
 class NotificationItem extends StatelessWidget {
-  final ProductModel productModel;
+  final NotificationModel notificationModel;
 
-  NotificationItem({@required this.productModel});
+  NotificationItem({@required this.notificationModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class NotificationItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CircleAvatar(
-            backgroundImage: AssetImage(this.productModel.images[0]),
+            backgroundImage: AssetImage(this.notificationModel.image),
             radius: 45,
           ),
           Expanded(
@@ -29,15 +29,27 @@ class NotificationItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 14.0, bottom: 4.0),
-                    child: Text(
-                      this.productModel.name,
-                      style: Theme.of(context).accentTextTheme.display1,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 14.0, bottom: 4.0),
+                        child: Text(
+                          this.notificationModel.title,
+                          style: Theme.of(context).accentTextTheme.display1,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16.0, top: 10.0),
+                        child: Text(
+                          this.notificationModel.date,
+                          style: Theme.of(context).textTheme.display2,
+                        ),
+                      )
+                    ],
                   ),
                   Text(
-                    this.productModel.price,
+                    this.notificationModel.subTitle,
                     style: Theme.of(context).textTheme.body1,
                   ),
                   Spacer(),
@@ -45,7 +57,7 @@ class NotificationItem extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -2,10 +2,10 @@
 import 'package:flutter/cupertino.dart';
 
 // my app imports
-import 'package:e_commerce/ui/models/cart_list.dart';
+import 'package:e_commerce/ui/models/cart_model_list.dart';
 
 class NotificationModel {
-  final CartList cartList;
+  final CartModelList cartList;
   final String title;
   final String subTitle;
   final String date;

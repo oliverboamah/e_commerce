@@ -7,6 +7,10 @@ import 'package:e_commerce/ui/models/product_model.dart';
 class CartModel {
   final ProductModel productModel;
   final String status;
+  final int quantity;
 
-  CartModel({@required this.productModel, this.status = 'pending'});
+  CartModel(
+      {@required this.productModel,
+      this.status = 'pending',
+      this.quantity = 1});
 }

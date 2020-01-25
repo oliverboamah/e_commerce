@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 // my app imports
 import 'package:e_commerce/ui/models/cart_model.dart';
 
-class CartList {
+class CartModelList {
   List<CartModel> list = [];
 
-  CartList();
+  CartModelList();
 
-  CartList.initial({@required List<CartModel> list});
+  CartModelList.initial({@required this.list});
 
   void add(CartModel cartModel) {
     this.list.add(cartModel);
@@ -25,5 +25,9 @@ class CartList {
 
   CartModel get(int index) {
     return this.list[index];
+  }
+
+  int size() {
+    return this.list.length;
   }
 }

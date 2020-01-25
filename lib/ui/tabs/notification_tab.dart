@@ -7,7 +7,7 @@ import 'package:e_commerce/ui/models/product_model.dart';
 import 'package:e_commerce/ui/components/app_bar_with_hamburger.dart';
 import 'package:e_commerce/values/colors.dart';
 import 'package:e_commerce/ui/components/notification/notification_list.dart';
-import 'package:e_commerce/ui/models/cart_list.dart';
+import 'package:e_commerce/ui/models/cart_model_list.dart';
 import 'package:e_commerce/ui/models/cart_model.dart';
 import 'package:e_commerce/ui/models/notification_model.dart';
 
@@ -29,7 +29,7 @@ class _NotificationTabState extends State<NotificationTab> {
     for (int i = 0; i < 20; i++) {
       this.notificationModels.add(
             NotificationModel(
-                cartList: CartList.initial(list: [
+                cartList: CartModelList.initial(list: [
                   CartModel(
                     status: 'pending',
                     productModel: ProductModel(

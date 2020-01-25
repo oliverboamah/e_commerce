@@ -33,6 +33,8 @@ final appTheme = ThemeData(
           color: secondaryTextColor),
       display3: TextStyle(
           fontSize: bodyTextSize, fontFamily: 'Raleway', color: primaryColor),
+      caption: TextStyle(
+          fontSize: bodyTextSize, fontFamily: 'Raleway', color: colorWhite),
     ),
     accentTextTheme: TextTheme(
         title: TextStyle(

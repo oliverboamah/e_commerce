@@ -1,4 +1,5 @@
 // flutter imports
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,9 @@ import 'package:e_commerce/ui/tabs/checkout/payment_tab.dart';
 import 'package:e_commerce/ui/tabs/checkout/summary_tab.dart';
 import 'package:e_commerce/values/colors.dart';
 import 'package:e_commerce/values/dimen.dart';
+import 'package:e_commerce/ui/models/cart_model.dart';
+import 'package:e_commerce/ui/models/cart_model_list.dart';
+import 'package:e_commerce/ui/models/product_model.dart';
 
 class CheckoutPage extends StatefulWidget {
   @override
@@ -17,13 +21,44 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   int _selectedIndex = 0;
-  List<Widget> tabs = [DeliveryTab(), SummaryTab(), PaymentTab()];
+  List<Widget> tabs;
   final List<String> tabButtonTitle = [
     'PROCEED TO SUMMARY',
     'PROCEED TO PAYMENT',
     ''
   ];
   final PageController _pageController = PageController();
+  CartModelList cartModelList = CartModelList();
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+    this.tabs = [
+      DeliveryTab(
+        cartModelList: this.cartModelList,
+      ),
+      SummaryTab(),
+      PaymentTab()
+    ];
+  }
+
+  void loadData() {
+    for (int i = 0; i < 20; i++) {
+      this.cartModelList.add(CartModel(
+            status: 'pending',
+            delivery: 'Delivered between Friday Jan 3 and Tuesday 7 Jan',
+            productModel: ProductModel(
+                name: 'Lenovo x280',
+                price: '\$ 1399',
+                discount: '-37%',
+                images: [
+                  'assets/images/lenovo.jpg',
+                  'assets/images/lenovo.jpg',
+                ]),
+          ));
+    }
+  }
 
   _onTabSelected(int index) {
     this.setState(() => this._selectedIndex = index);

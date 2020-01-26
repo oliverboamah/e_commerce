@@ -38,7 +38,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
       DeliveryTab(
         cartModelList: this.cartModelList,
       ),
-      SummaryTab(),
+      SummaryTab(
+        cartModelList: this.cartModelList,
+      ),
       PaymentTab()
     ];
   }

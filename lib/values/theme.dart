@@ -67,6 +67,11 @@ final appTheme = ThemeData(
             fontFamily: 'Raleway',
             color: secondaryTextColor,
             fontSize: bodyTextSize),
+        subhead: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Raleway',
+            color: primaryTextColor,
+            fontSize: bodyTextSize),
         caption: TextStyle(
             fontFamily: 'Raleway', color: colorWhite, fontSize: titleTextSize)),
     dividerColor: dividerColor,

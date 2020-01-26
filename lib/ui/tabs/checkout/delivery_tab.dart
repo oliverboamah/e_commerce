@@ -1,4 +1,5 @@
 // flutter import
+import 'package:e_commerce/ui/components/checkout/order_total_section.dart';
 import 'package:flutter/cupertino.dart';
 
 // my app imports
@@ -22,7 +23,12 @@ class _DeliveryTabState extends State<DeliveryTab> {
     return ListView(
       padding: EdgeInsets.only(top: 8.0),
       children: <Widget>[
-        AddressSection(),
+        AddressSection(
+          leadingTitle: 'Address Details',
+          address:
+              'Oliver Boamah\nHouse 14, American House\nEast Legon\n+233 55 329 5012',
+          trailingTitle: 'Add',
+        ),
         DeliveryMethodSection(),
         ShipmentSection(
           cartModelList: this.widget.cartModelList,

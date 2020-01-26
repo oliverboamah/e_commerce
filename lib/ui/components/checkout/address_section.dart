@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/ui/components/checkout/tertiary_section_header.dart';
 
 class AddressSection extends StatelessWidget {
-  final String address =
-      'Oliver Boamah\nHouse 14, American House\nEast Legon\n+233 55 329 5012';
+  final String address;
+  final String leadingTitle;
+  final String trailingTitle;
+
+  AddressSection({this.address, this.leadingTitle, this.trailingTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +18,8 @@ class AddressSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TertiarySectionHeader(
-          leadingTitle: 'Address Details',
-          trailingTitle: 'Add',
+          leadingTitle: this.leadingTitle,
+          trailingTitle: this.trailingTitle,
         ),
         Padding(
           padding: const EdgeInsets.only(

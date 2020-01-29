@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/ui/pages/payment/payment_failure_page.dart';
 import 'package:e_commerce/ui/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: SearchPage(),
+          body: PaymentFailurePage(),
         ));
   }
 }

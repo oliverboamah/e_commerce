@@ -1,6 +1,4 @@
 // flutter imports
-import 'package:e_commerce/ui/pages/payment/payment_failure_page.dart';
-import 'package:e_commerce/ui/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
@@ -15,6 +13,9 @@ import 'package:e_commerce/ui/tabs/wishlist_tab.dart';
 import 'package:e_commerce/ui/pages/address/address_page.dart';
 import 'package:e_commerce/ui/pages/address/location_page.dart';
 import 'package:e_commerce/ui/pages/checkout/checkout_page.dart';
+import 'package:e_commerce/ui/pages/notification/notification_detail_page.dart';
+import 'package:e_commerce/ui/pages/payment/payment_failure_page.dart';
+import 'package:e_commerce/ui/pages/search/search_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: PaymentFailurePage(),
+          body: NotificationDetailPage(),
         ));
   }
 }

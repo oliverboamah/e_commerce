@@ -30,7 +30,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       backgroundColor: colorWhite,
       appBar: AppBarWithCart(
         context: context,
-        productModel: this.widget.productModel,
+        appBarTitle: this.widget.productModel.name,
         onCartClicked: () {
           print('cart clicked');
         },

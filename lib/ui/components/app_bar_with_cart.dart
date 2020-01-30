@@ -7,11 +7,11 @@ import 'package:e_commerce/ui/models/product_model.dart';
 import 'package:e_commerce/values/colors.dart';
 
 class AppBarWithCart extends AppBar {
-  final ProductModel productModel;
+  final String appBarTitle;
   final Function onCartClicked;
 
   AppBarWithCart(
-      {@required this.productModel, BuildContext context, this.onCartClicked})
+      {@required this.appBarTitle, @required BuildContext context, this.onCartClicked})
       : super(
           elevation: 1,
           centerTitle: true,
@@ -20,7 +20,7 @@ class AppBarWithCart extends AppBar {
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(
-            productModel.name,
+            appBarTitle,
             style: Theme.of(context).textTheme.title,
           ),
           actions: <Widget>[

@@ -33,13 +33,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//CartPage(
-//productModel: ProductModel(
-//name: 'Lenovo x280',
-//price: '\$ 1399',
-//discount: '-37%',
-//images: [
-//'assets/images/lenovo.jpg',
-//'assets/images/lenovo.jpg',
-//]),
-//)
+// CartPage(
+// productModel: ,
+// )

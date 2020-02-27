@@ -1,4 +1,6 @@
 // flutter imports
+import 'package:e_commerce/ui/models/product_model.dart';
+import 'package:e_commerce/ui/routes/routes.dart';
 import 'package:e_commerce/ui/tabs/notification_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,18 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: colorWhite,
-        onPressed: () {},
+        onPressed: () {
+          Routes.goToCartPage(
+              context,
+              ProductModel(
+                  name: 'Lenovo x280',
+                  price: '\$ 1399',
+                  discount: '-37%',
+                  images: [
+                    'assets/images/lenovo.jpg',
+                    'assets/images/lenovo.jpg',
+                  ]));
+        },
         child: Stack(
           children: <Widget>[
             Padding(

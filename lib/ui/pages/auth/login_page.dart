@@ -16,7 +16,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  _onSubmit(LoginModel loginModel) {}
+  _onSubmit(LoginModel loginModel) {
+    Routes.goToHomePage(context);
+  }
 
   _loginWithFacebook() {}
 

@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:e_commerce/ui/models/category_model.dart';
 import 'package:e_commerce/ui/components/products/product_list.dart';
 import 'package:e_commerce/ui/models/product_model.dart';
+import 'package:e_commerce/ui/routes/routes.dart';
+
 
 class ProductsTab extends StatefulWidget {
   final CategoryModel categoryModel;
@@ -28,7 +30,7 @@ class _ProductsTab extends State<ProductsTab> {
   Widget build(BuildContext context) {
     return ProductList(
       productModelList: this._productModelList,
-      onItemClicked: (index) => print(index),
+      onItemClicked: (index) => Routes.goToProductDetailPage(context, this._productModelList[index]),
     );
   }
 

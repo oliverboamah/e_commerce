@@ -14,11 +14,13 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: OrientationBuilder(
           builder: (context, orientation) {
             return GridView.count(
+              childAspectRatio: (1/1.1),
               crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
               children: List.generate(this.productModelList.length, (index) {
                 return InkWell(

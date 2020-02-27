@@ -13,36 +13,43 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Spacer(),
-              Discount(
-                discount: -37,
-              )
-            ],
-          ),
-          SizedBox(
-            height: 100,
-            width: 100,
-            child: Image.asset(
-              this.productModel.images[0],
-              fit: BoxFit.fill,
+
+    return SingleChildScrollView(
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Spacer(),
+                Discount(
+                  discount: -37,
+                )
+              ],
             ),
-          ),
-          Text(
-            this.productModel.name,
-            style: Theme.of(context).textTheme.title,
-          ),
-          Text(
-            this.productModel.price,
-            style: Theme.of(context).accentTextTheme.display1,
-          )
-        ],
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: Image.asset(
+                this.productModel.images[0],
+                fit: BoxFit.fill,
+              ),
+            ),
+            Text(
+              this.productModel.name,
+              style: Theme.of(context).textTheme.title,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: Text(
+                this.productModel.price,
+                style: Theme.of(context).accentTextTheme.display1,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

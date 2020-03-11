@@ -11,16 +11,19 @@ class InputField extends StatelessWidget {
   final String hintText;
   final Function onChanged;
   final TextInputType keyboardType;
+  final TextEditingController controller;
 
   InputField(
       {this.validator,
       this.hintText,
       this.onChanged,
-      this.keyboardType = TextInputType.text});
+      this.keyboardType = TextInputType.text,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: Theme.of(context).textTheme.title,
       keyboardType: keyboardType,
       onChanged: (value) => this.onChanged(value),

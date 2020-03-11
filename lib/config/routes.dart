@@ -1,6 +1,6 @@
 // flutter imports
-import 'package:e_commerce/presentation/features/auth/login_page.dart';
-import 'package:e_commerce/presentation/features/auth/register_page.dart';
+import 'package:e_commerce/presentation/features/account/login_page.dart';
+import 'package:e_commerce/presentation/features/account/register/register_screen.dart';
 import 'package:e_commerce/presentation/features/cart/cart_page.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_page.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
@@ -18,7 +18,7 @@ class Routes {
 
   static void goToRegisterPage(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => RegisterPage()));
+        context, MaterialPageRoute(builder: (context) => RegisterScreen()));
   }
 
   static void goToHomePage(BuildContext context) {

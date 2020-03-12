@@ -190,7 +190,7 @@ class _RegisterViewState extends State<RegisterView> {
                           'Login',
                           style: Theme.of(context).textTheme.display3,
                         ),
-                        onTap: () => Routes.goToLoginPage(context),
+                        onTap: () => Routes.goToLoginScreen(context),
                       ),
                     ),
                   ],

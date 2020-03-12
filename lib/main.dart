@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/config/theme.dart';
-import 'package:e_commerce/presentation/features/account/register/register_screen.dart';
+import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: RegisterScreen(),
+          body: LoginScreen(),
         ));
   }
 }

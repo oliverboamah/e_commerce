@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/config/theme.dart';
-import 'package:e_commerce/presentation/features/home_page.dart';
-import 'package:e_commerce/domain/models/product_model.dart';
+import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,11 +15,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: HomePage(),
+          body: LoginScreen(),
         ));
   }
 }
-
-// CartPage(
-// productModel: ,
-// )

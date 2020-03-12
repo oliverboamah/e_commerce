@@ -1,9 +1,9 @@
 // flutter imports
 import 'package:flutter/cupertino.dart';
 
-class LoginModel {
+class UserAuthModel {
   final email;
   final password;
 
-  LoginModel({@required this.email, @required this.password});
+  UserAuthModel({@required this.email, @required this.password});
 }

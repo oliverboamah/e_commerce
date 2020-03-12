@@ -1,6 +1,6 @@
 // flutter imports
-import 'package:e_commerce/presentation/features/auth/login_page.dart';
-import 'package:e_commerce/presentation/features/auth/register_page.dart';
+import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
+import 'package:e_commerce/presentation/features/account/register/register_screen.dart';
 import 'package:e_commerce/presentation/features/cart/cart_page.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_page.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
@@ -8,20 +8,18 @@ import 'package:e_commerce/presentation/features/home_page.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
-
-
 class Routes {
-  static void goToLoginPage(BuildContext context) {
+  static void goToLoginScreen(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
-  static void goToRegisterPage(BuildContext context) {
+  static void goToRegisterScreen(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => RegisterPage()));
+        context, MaterialPageRoute(builder: (context) => RegisterScreen()));
   }
 
-  static void goToHomePage(BuildContext context) {
+  static void goToHomeScreen(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
@@ -36,8 +34,7 @@ class Routes {
                 )));
   }
 
-   static void goToCartPage(
-      BuildContext context, ProductModel productModel) {
+  static void goToCartPage(BuildContext context, ProductModel productModel) {
     Navigator.push(
         context,
         MaterialPageRoute(

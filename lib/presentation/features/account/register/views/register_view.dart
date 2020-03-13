@@ -158,19 +158,29 @@ class _RegisterViewState extends State<RegisterView> {
                           Button(
                               text: 'Register',
                               onPressed: () {
-                                if (this._formKey.currentState.validate()) {
+                                if (BlocProvider.of<RegisterBloc>(context)
+                                        .state
+                                        .agreeToTerms &&
+                                    this._formKey.currentState.validate()) {
                                   BlocProvider.of<RegisterBloc>(context).add(
                                       CreateUserEvent(
                                           registerModel: RegisterModel(
                                               firstName: this
                                                   ._firstNameController
-                                                  .text,
-                                              lastName:
-                                                  this._lastNameController.text,
-                                              email: this._emailController.text,
+                                                  .text
+                                                  .trim(),
+                                              lastName: this
+                                                  ._lastNameController
+                                                  .text
+                                                  .trim(),
+                                              email: this
+                                                  ._emailController
+                                                  .text
+                                                  .trim(),
                                               password: this
                                                   ._passwordController
-                                                  .text)));
+                                                  .text
+                                                  .trim())));
                                 }
                               })
                         ],

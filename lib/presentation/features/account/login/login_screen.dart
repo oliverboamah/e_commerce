@@ -1,3 +1,4 @@
+import 'package:e_commerce/data/remote/auth/user_auth_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/presentation/features/account/login/login_bloc.dart';
@@ -14,7 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginBloc>(
-      create: (BuildContext context) => LoginBloc(),
+      create: (BuildContext context) =>
+          LoginBloc(userAuthRepository: FirebaseUserAuthRepository()),
       child: LoginWrapper(),
     );
   }

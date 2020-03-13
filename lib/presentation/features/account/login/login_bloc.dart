@@ -14,14 +14,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    try {
-      if (event is AuthenticateUserEvent) {
-        await userAuthRepository.signIn(email: event.userAuthModel.email, password: event.userAuthModel.password);
+    if (event is AuthenticateUserEvent) {
+      try {
+        await userAuthRepository.signIn(
+            email: event.userAuthModel.email,
+            password: event.userAuthModel.password);
+        event.stopLoading();
         yield AuthUserSuccessState();
+      } catch (error) {
+        print(error);
+        event.stopLoading();
+
+        yield AuthUserErrorState(errorMessage: error.toString());
       }
-    } catch (error) {
-      print(error);
-      yield AuthUserErrorState(errorMessage: error.toString());
     }
   }
 }

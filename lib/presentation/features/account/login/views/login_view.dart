@@ -1,4 +1,6 @@
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:e_commerce/config/routes.dart';
+import 'package:e_commerce/presentation/widgets/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,19 +96,23 @@ class _LoginViewState extends State<LoginView> {
                               ],
                             ),
                           ),
-                          Button(
-                              text: 'Login',
-                              onPressed: () {
-                                if (this._formKey.currentState.validate()) {
-                                  BlocProvider.of<LoginBloc>(context).add(
-                                      AuthenticateUserEvent(
-                                          userAuthModel: UserAuthModel(
-                                              email: this._emailController.text,
-                                              password: this
-                                                  ._passwordController
-                                                  .text)));
-                                }
-                              })
+                          LoadingButton(
+                            title: 'Login',
+                            onTap: (startLoading, stopLoading, btnState) {
+                              if (btnState == ButtonState.Idle &&
+                                  this._formKey.currentState.validate()) {
+                                startLoading();
+                                BlocProvider.of<LoginBloc>(context).add(
+                                    AuthenticateUserEvent(
+                                        stopLoading: stopLoading,
+                                        userAuthModel: UserAuthModel(
+                                            email: this._emailController.text,
+                                            password: this
+                                                ._passwordController
+                                                .text)));
+                              }
+                            },
+                          )
                         ],
                       )),
                 ),

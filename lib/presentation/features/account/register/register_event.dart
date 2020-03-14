@@ -1,5 +1,10 @@
+// flutter imports
 import 'package:flutter/cupertino.dart';
+
+// third party imports
 import 'package:equatable/equatable.dart';
+
+// my app imports
 import 'package:e_commerce/domain/models/register_model.dart';
 
 @immutable
@@ -10,11 +15,12 @@ class RegisterEvent extends Equatable {
 
 class CreateUserEvent extends RegisterEvent {
   final RegisterModel registerModel;
+  final Function stopLoading;
 
-  CreateUserEvent({this.registerModel});
+  CreateUserEvent({@required this.registerModel, @required this.stopLoading});
 
   @override
-  List<Object> get props => [registerModel];
+  List<Object> get props => [registerModel, stopLoading];
 
   @override
   String toString() => 'Create User Event';

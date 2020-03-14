@@ -63,6 +63,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         children: <Widget>[
                           InputField(
+                            hintText: 'Email',
                               controller: this._emailController,
                               keyboardType: TextInputType.emailAddress,
                               validator: (value) {

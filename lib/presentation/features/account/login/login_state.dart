@@ -16,9 +16,11 @@ class AuthUserSuccessState extends LoginState {}
 @immutable
 class AuthUserErrorState extends LoginState {
   final String errorMessage;
+  final int errorHashCode;
 
-  AuthUserErrorState({@required this.errorMessage});
+  AuthUserErrorState(
+      {@required this.errorMessage, @required this.errorHashCode});
 
   @override
-  List<Object> get props => [errorMessage];
+  List<Object> get props => [errorMessage, errorHashCode];
 }

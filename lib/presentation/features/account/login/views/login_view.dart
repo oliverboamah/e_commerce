@@ -9,7 +9,6 @@ import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/domain/models/user_auth_model.dart';
 import 'package:e_commerce/presentation/features/account/login/login_bloc.dart';
 import 'package:e_commerce/presentation/features/account/login/login_event.dart';
-import 'package:e_commerce/presentation/widgets/button.dart';
 import 'package:e_commerce/presentation/widgets/image_text.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/presentation/widgets/password_field.dart';
@@ -106,10 +105,14 @@ class _LoginViewState extends State<LoginView> {
                                     AuthenticateUserEvent(
                                         stopLoading: stopLoading,
                                         userAuthModel: UserAuthModel(
-                                            email: this._emailController.text,
+                                            email: this
+                                                ._emailController
+                                                .text
+                                                .trim(),
                                             password: this
                                                 ._passwordController
-                                                .text)));
+                                                .text
+                                                .trim())));
                               }
                             },
                           )

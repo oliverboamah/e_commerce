@@ -1,12 +1,16 @@
-import 'package:flushbar/flushbar.dart';
+// flutter imports
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+// third party imports
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// my app imports
 import 'package:e_commerce/presentation/features/account/login/login_bloc.dart';
 import 'package:e_commerce/presentation/features/account/login/login_state.dart';
 import 'package:e_commerce/presentation/features/account/login/views/login_view.dart';
 import 'package:e_commerce/data/remote/auth/user_auth_repository.dart';
 import 'package:e_commerce/config/routes.dart';
+import 'package:e_commerce/presentation/widgets/messages.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -39,13 +43,9 @@ class _LoginWrapperState extends State<LoginWrapper> {
             if (state is AuthUserSuccessState) {
               Routes.goToHomeScreen(context);
             } else if (state is AuthUserErrorState) {
-              Flushbar(
-                flushbarPosition: FlushbarPosition.TOP,
+              Messages(
                 message: state.errorMessage,
-                backgroundGradient: LinearGradient(
-                  colors: [Colors.red, Colors.redAccent],
-                ),
-                duration: Duration(seconds: 5),
+                messageType: MessageType.error,
               )..show(context);
             }
           },

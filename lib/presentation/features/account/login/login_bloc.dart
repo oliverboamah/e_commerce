@@ -1,7 +1,11 @@
+// flutter imports
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+
+// third part imports
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// my app imports
 import 'package:e_commerce/presentation/features/account/login/login_event.dart';
 import 'package:e_commerce/presentation/features/account/login/login_state.dart';
 import 'package:e_commerce/domain/repositories/user_auth_repository.dart';

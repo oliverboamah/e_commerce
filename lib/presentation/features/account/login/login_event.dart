@@ -1,5 +1,10 @@
+// flutter imports
 import 'package:flutter/widgets.dart';
+
+// third party imports
 import 'package:equatable/equatable.dart';
+
+// my app imports
 import 'package:e_commerce/domain/models/user_auth_model.dart';
 
 @immutable

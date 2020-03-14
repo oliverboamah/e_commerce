@@ -1,9 +1,14 @@
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
-import 'package:e_commerce/config/routes.dart';
-import 'package:e_commerce/presentation/widgets/loading_button.dart';
+// flutter imports
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+// third party imports
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
+
+// my app imports
+import 'package:e_commerce/config/routes.dart';
+import 'package:e_commerce/presentation/widgets/loading_button.dart';
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/domain/models/user_auth_model.dart';

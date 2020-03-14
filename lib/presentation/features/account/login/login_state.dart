@@ -1,4 +1,7 @@
+// flutter imports
 import 'package:flutter/widgets.dart';
+
+// third party imports
 import 'package:equatable/equatable.dart';
 
 @immutable
@@ -16,9 +19,11 @@ class AuthUserSuccessState extends LoginState {}
 @immutable
 class AuthUserErrorState extends LoginState {
   final String errorMessage;
+  final int errorHashCode;
 
-  AuthUserErrorState({@required this.errorMessage});
+  AuthUserErrorState(
+      {@required this.errorMessage, @required this.errorHashCode});
 
   @override
-  List<Object> get props => [errorMessage];
+  List<Object> get props => [errorMessage, errorHashCode];
 }

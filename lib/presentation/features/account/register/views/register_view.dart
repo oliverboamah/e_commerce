@@ -1,16 +1,22 @@
+// flutter imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// third party imports
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// my app imports
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/config/routes.dart';
 import 'package:e_commerce/domain/models/register_model.dart';
 import 'package:e_commerce/presentation/features/account/register/register_bloc.dart';
-import 'package:e_commerce/presentation/widgets/button.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/presentation/widgets/password_field.dart';
 import 'package:e_commerce/utils/email_validator.dart';
-import '../register_event.dart';
+import 'package:e_commerce/presentation/widgets/loading_button.dart';
+import 'package:e_commerce/presentation/widgets/messages.dart';
+import 'package:e_commerce/presentation/features/account/register/register_event.dart';
 
 class RegisterView extends StatefulWidget {
   @override
@@ -155,24 +161,47 @@ class _RegisterViewState extends State<RegisterView> {
                                   onTap: () => {},
                                 )
                               ])),
-                          Button(
-                              text: 'Register',
-                              onPressed: () {
-                                if (this._formKey.currentState.validate()) {
-                                  BlocProvider.of<RegisterBloc>(context).add(
-                                      CreateUserEvent(
-                                          registerModel: RegisterModel(
-                                              firstName: this
-                                                  ._firstNameController
-                                                  .text,
-                                              lastName:
-                                                  this._lastNameController.text,
-                                              email: this._emailController.text,
-                                              password: this
-                                                  ._passwordController
-                                                  .text)));
-                                }
-                              })
+                          LoadingButton(
+                            title: 'Register',
+                            onTap: (startLoading, stopLoading, btnState) {
+                              if (this._formKey.currentState.validate() &&
+                                  !BlocProvider.of<RegisterBloc>(context)
+                                      .state
+                                      .agreeToTerms) {
+                                Messages(
+                                  messageType: MessageType.info,
+                                  message:
+                                      'Please read and accept Terms & Conditions before you proceed',
+                                )..show(context);
+                              } else if (this
+                                  ._formKey
+                                  .currentState
+                                  .validate()) {
+                                startLoading();
+
+                                BlocProvider.of<RegisterBloc>(context).add(
+                                    CreateUserEvent(
+                                        stopLoading: stopLoading,
+                                        registerModel: RegisterModel(
+                                            firstName: this
+                                                ._firstNameController
+                                                .text
+                                                .trim(),
+                                            lastName: this
+                                                ._lastNameController
+                                                .text
+                                                .trim(),
+                                            email: this
+                                                ._emailController
+                                                .text
+                                                .trim(),
+                                            password: this
+                                                ._passwordController
+                                                .text
+                                                .trim())));
+                              }
+                            },
+                          )
                         ],
                       )),
                 ),

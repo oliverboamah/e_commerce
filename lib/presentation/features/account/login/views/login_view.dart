@@ -1,13 +1,19 @@
-import 'package:e_commerce/config/routes.dart';
+// flutter imports
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+// third party imports
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
+
+// my app imports
+import 'package:e_commerce/config/routes.dart';
+import 'package:e_commerce/presentation/widgets/loading_button.dart';
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/domain/models/user_auth_model.dart';
 import 'package:e_commerce/presentation/features/account/login/login_bloc.dart';
 import 'package:e_commerce/presentation/features/account/login/login_event.dart';
-import 'package:e_commerce/presentation/widgets/button.dart';
 import 'package:e_commerce/presentation/widgets/image_text.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/presentation/widgets/password_field.dart';
@@ -57,6 +63,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         children: <Widget>[
                           InputField(
+                            hintText: 'Email',
                               controller: this._emailController,
                               keyboardType: TextInputType.emailAddress,
                               validator: (value) {
@@ -94,19 +101,27 @@ class _LoginViewState extends State<LoginView> {
                               ],
                             ),
                           ),
-                          Button(
-                              text: 'Login',
-                              onPressed: () {
-                                if (this._formKey.currentState.validate()) {
-                                  BlocProvider.of<LoginBloc>(context).add(
-                                      AuthenticateUserEvent(
-                                          userAuthModel: UserAuthModel(
-                                              email: this._emailController.text,
-                                              password: this
-                                                  ._passwordController
-                                                  .text)));
-                                }
-                              })
+                          LoadingButton(
+                            title: 'Login',
+                            onTap: (startLoading, stopLoading, btnState) {
+                              if (btnState == ButtonState.Idle &&
+                                  this._formKey.currentState.validate()) {
+                                startLoading();
+                                BlocProvider.of<LoginBloc>(context).add(
+                                    AuthenticateUserEvent(
+                                        stopLoading: stopLoading,
+                                        userAuthModel: UserAuthModel(
+                                            email: this
+                                                ._emailController
+                                                .text
+                                                .trim(),
+                                            password: this
+                                                ._passwordController
+                                                .text
+                                                .trim())));
+                              }
+                            },
+                          )
                         ],
                       )),
                 ),

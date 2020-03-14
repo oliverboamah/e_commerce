@@ -1,4 +1,7 @@
+// flutter imports
 import 'package:flutter/cupertino.dart';
+
+// third party imports
 import 'package:equatable/equatable.dart';
 
 @immutable
@@ -24,12 +27,16 @@ class RegisterSuccessState extends RegisterState {
 @immutable
 class RegisterErrorState extends RegisterState {
   final String errorMessage;
+  final int errorHashCode;
 
-  RegisterErrorState({bool agreeToTerms, this.errorMessage})
+  RegisterErrorState(
+      {@required bool agreeToTerms,
+      @required this.errorMessage,
+      @required this.errorHashCode})
       : super(agreeToTerms: agreeToTerms);
 
   @override
-  List<Object> get props => [agreeToTerms, errorMessage];
+  List<Object> get props => [agreeToTerms, errorMessage, errorHashCode];
 }
 
 @immutable

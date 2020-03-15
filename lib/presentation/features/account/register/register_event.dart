@@ -13,19 +13,6 @@ class RegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CreateUserEvent extends RegisterEvent {
-  final RegisterModel registerModel;
-  final Function stopLoading;
-
-  CreateUserEvent({@required this.registerModel, @required this.stopLoading});
-
-  @override
-  List<Object> get props => [registerModel, stopLoading];
-
-  @override
-  String toString() => 'Create User Event';
-}
-
 @immutable
 class AgreeToTermsEvent extends RegisterEvent {
   final bool agreeToTerms;
@@ -37,4 +24,19 @@ class AgreeToTermsEvent extends RegisterEvent {
 
   @override
   String toString() => 'Agree To Terms Event';
+}
+
+@immutable
+class CreateFirebaseUserEvent extends RegisterEvent {
+  final RegisterModel registerModel;
+  final Function stopLoading;
+
+  CreateFirebaseUserEvent(
+      {@required this.registerModel, @required this.stopLoading});
+
+  @override
+  List<Object> get props => [registerModel, stopLoading];
+
+  @override
+  String toString() => 'Create Firebase User Event';
 }

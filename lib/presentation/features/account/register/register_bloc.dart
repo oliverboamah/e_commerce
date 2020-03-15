@@ -1,6 +1,5 @@
 // flutter imports
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 // third party imports
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // my app imports
 import 'package:e_commerce/presentation/features/account/register/register_event.dart';
 import 'package:e_commerce/presentation/features/account/register/register_state.dart';
-import 'package:e_commerce/domain/repositories/user_auth_repository.dart';
+import 'package:e_commerce/data/remote/auth/firebase_user_auth_repository.dart';
+import 'package:e_commerce/domain/repositories/primary_user_auth_repository.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  UserAuthRepository userAuthRepository;
+  PrimaryUserAuthRepository primaryUserAuthRepository;
 
-  RegisterBloc({@required this.userAuthRepository});
   @override
   RegisterState get initialState => RegisterInitialState(agreeToTerms: false);
 
@@ -21,9 +20,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   Stream<RegisterState> mapEventToState(RegisterEvent event) async* {
     if (event is AgreeToTermsEvent) {
       yield AgreeToTermsState(agreeToTerms: event.agreeToTerms);
-    } else if (event is CreateUserEvent) {
+    } else if (event is CreateFirebaseUserEvent) {
+      primaryUserAuthRepository = FirebaseUserAuthRepository();
       try {
-        await userAuthRepository.signUp(
+        await primaryUserAuthRepository.signUp(
             event.registerModel.email,
             event.registerModel.password,
             event.registerModel.firstName,

@@ -14,16 +14,24 @@ class LoginEvent extends Equatable {
 }
 
 @immutable
-class AuthenticateUserEvent extends LoginEvent {
-  final UserAuthModel userAuthModel;
+class AuthFirebaseUserEvent extends LoginEvent {
   final Function stopLoading;
+  final UserAuthModel userAuthModel;
 
-  AuthenticateUserEvent(
+  AuthFirebaseUserEvent(
       {@required this.userAuthModel, @required this.stopLoading});
 
   @override
   List<Object> get props => [userAuthModel, stopLoading];
 
   @override
-  String toString() => 'Authenticate User Event';
+  String toString() => 'Authenticate Firebase User Event';
+}
+
+@immutable
+class AuthGoogleUserEvent extends LoginEvent {
+  AuthGoogleUserEvent();
+
+  @override
+  String toString() => 'Authenticate Google User Event';
 }

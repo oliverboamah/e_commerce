@@ -183,7 +183,8 @@ class _LoginViewState extends State<LoginView> {
                           text: Text('Facebook',
                               style: Theme.of(context).textTheme.title),
                         ),
-                        onTap: () => {},
+                        onTap: () => BlocProvider.of<LoginBloc>(context)
+                            .add(AuthFacebookUserEvent()),
                       ),
                     ],
                   ),

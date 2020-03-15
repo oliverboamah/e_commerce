@@ -35,3 +35,11 @@ class AuthGoogleUserEvent extends LoginEvent {
   @override
   String toString() => 'Authenticate Google User Event';
 }
+
+@immutable
+class AuthFacebookUserEvent extends LoginEvent {
+  AuthFacebookUserEvent();
+
+  @override
+  String toString() => 'Authenticate Facebook User Event';
+}

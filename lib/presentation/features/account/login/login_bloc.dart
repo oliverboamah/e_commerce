@@ -9,6 +9,7 @@ import 'package:e_commerce/presentation/features/account/login/login_event.dart'
 import 'package:e_commerce/presentation/features/account/login/login_state.dart';
 import 'package:e_commerce/data/remote/auth/firebase_user_auth_repository.dart';
 import 'package:e_commerce/data/remote/auth/google_user_auth_repository.dart';
+import 'package:e_commerce/data/remote/auth/facebook_user_auth_repository.dart';
 import 'package:e_commerce/domain/repositories/user_auth_repository.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -30,6 +31,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         userAuthRepository = GoogleUserAuthRepository();
         String response =
             await (userAuthRepository as GoogleUserAuthRepository).signIn();
+        print(response);
+      } else if (event is AuthFacebookUserEvent) {
+        userAuthRepository = FacebookUserAuthRepository();
+        String response =
+            await (userAuthRepository as FacebookUserAuthRepository).signIn();
         print(response);
       }
 
@@ -54,6 +60,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         case 'ERROR_TOO_MANY_REQUESTS':
           errorMessage =
               'We have temporarily blocked requests from this device due to many unsuccessful login attempts. Please try again later';
+          break;
+        case 'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL':
+          errorMessage =
+              'An account already exists with the same email in our database, Login by entering the details associated with this email';
           break;
         default:
           errorMessage = error.toString();

@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:e_commerce/domain/repositories/user_auth_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/domain/repositories/primary_user_auth_repository.dart';
 
-class FirebaseUserAuthRepository extends UserAuthRepository {
+class FirebaseUserAuthRepository extends PrimaryUserAuthRepository {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final Firestore database = Firestore.instance;
 
@@ -17,7 +17,6 @@ class FirebaseUserAuthRepository extends UserAuthRepository {
   @override
   Future<String> signUp(
       String email, String password, String firstName, String lastName) async {
-    print('email: ' + email);
     // create user
     AuthResult authResult = await firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -32,5 +31,10 @@ class FirebaseUserAuthRepository extends UserAuthRepository {
     await database.collection('user_profiles').add(userProfile);
 
     return user.uid;
+  }
+
+  @override
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
   }
 }

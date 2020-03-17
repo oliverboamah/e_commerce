@@ -13,12 +13,12 @@ import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/domain/models/user_auth_model.dart';
 import 'package:e_commerce/presentation/features/account/login/login_bloc.dart';
-import 'package:e_commerce/presentation/features/account/login/login_event.dart';
 import 'package:e_commerce/presentation/widgets/image_text.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/presentation/widgets/password_field.dart';
 import 'package:e_commerce/presentation/widgets/vertical_line.dart';
 import 'package:e_commerce/utils/email_validator.dart';
+import 'package:e_commerce/presentation/features/account/login/login_event.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         children: <Widget>[
                           InputField(
-                            hintText: 'Email',
+                              hintText: 'Email',
                               controller: this._emailController,
                               keyboardType: TextInputType.emailAddress,
                               validator: (value) {
@@ -108,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                                   this._formKey.currentState.validate()) {
                                 startLoading();
                                 BlocProvider.of<LoginBloc>(context).add(
-                                    AuthenticateUserEvent(
+                                    AuthFirebaseUserEvent(
                                         stopLoading: stopLoading,
                                         userAuthModel: UserAuthModel(
                                             email: this
@@ -166,7 +166,8 @@ class _LoginViewState extends State<LoginView> {
                             style: Theme.of(context).textTheme.title,
                           ),
                         ),
-                        onTap: () => {},
+                        onTap: () => BlocProvider.of<LoginBloc>(context)
+                            .add(AuthGoogleUserEvent()),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -182,7 +183,8 @@ class _LoginViewState extends State<LoginView> {
                           text: Text('Facebook',
                               style: Theme.of(context).textTheme.title),
                         ),
-                        onTap: () => {},
+                        onTap: () => BlocProvider.of<LoginBloc>(context)
+                            .add(AuthFacebookUserEvent()),
                       ),
                     ],
                   ),

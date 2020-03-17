@@ -180,7 +180,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 startLoading();
 
                                 BlocProvider.of<RegisterBloc>(context).add(
-                                    CreateUserEvent(
+                                    CreateFirebaseUserEvent(
                                         stopLoading: stopLoading,
                                         registerModel: RegisterModel(
                                             firstName: this

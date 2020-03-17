@@ -10,7 +10,6 @@ import 'package:e_commerce/presentation/features/account/register/register_bloc.
 import 'package:e_commerce/presentation/features/account/register/register_state.dart';
 import 'package:e_commerce/presentation/features/account/register/views/register_view.dart';
 import 'package:e_commerce/config/routes.dart';
-import 'package:e_commerce/data/remote/auth/user_auth_repository.dart';
 import 'package:e_commerce/presentation/widgets/messages.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -23,7 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return BlocProvider<RegisterBloc>(
       create: (context) =>
-          RegisterBloc(userAuthRepository: FirebaseUserAuthRepository()),
+          RegisterBloc(),
       child: RegisterWrapper(),
     );
   }

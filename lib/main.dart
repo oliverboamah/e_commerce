@@ -1,9 +1,9 @@
 // flutter imports
+import 'package:e_commerce/presentation/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/config/theme.dart';
-import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: LoginScreen(),
+          body: HomeScreen(),
         ));
   }
 }

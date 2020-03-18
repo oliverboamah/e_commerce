@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/presentation/widgets/pk_skeleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +89,7 @@ class _ProductViewState extends State<ProductView>
                               this._tabController.animateTo(int);
                             },
                           )
-                        : CircularProgressIndicator())),
+                        : PKGridCardListSkeleton())),
           )
         ],
       ),

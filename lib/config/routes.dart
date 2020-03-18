@@ -2,9 +2,9 @@
 import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 import 'package:e_commerce/presentation/features/account/register/register_screen.dart';
 import 'package:e_commerce/presentation/features/cart/cart_page.dart';
+import 'package:e_commerce/presentation/features/home/home_screen.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_page.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
-import 'package:e_commerce/presentation/features/home_page.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
@@ -21,7 +21,7 @@ class Routes {
 
   static void goToHomeScreen(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   static void goToProductDetailPage(
@@ -34,7 +34,7 @@ class Routes {
                 )));
   }
 
-  static void goToCartPage(BuildContext context, ProductModel productModel) {
+  static void goToCartScreen(BuildContext context, ProductModel productModel) {
     Navigator.push(
         context,
         MaterialPageRoute(

@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // my app imports
 import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/home_event.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/product_tab.dart';
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
 import '../../../widgets/bottom_navbar.dart';
-import '../../tabs/home_tab.dart';
 import '../../tabs/notification_tab.dart';
 import '../../tabs/support_tab.dart';
 import '../../tabs/wishlist_tab.dart';
@@ -34,7 +34,12 @@ class _HomeViewState extends State<HomeView> {
       body: PageView(
         controller: _myPage,
         onPageChanged: (int) {},
-        children: [HomeTab(), WishListTab(), SupportTab(), NotificationTab()],
+        children: [
+          ProductTab(),
+          WishListTab(),
+          SupportTab(),
+          NotificationTab()
+        ],
         physics: NeverScrollableScrollPhysics(),
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,5 +1,4 @@
 // flutter imports
-import 'package:e_commerce/presentation/features/tabs/products_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,15 +8,17 @@ import 'package:e_commerce/presentation/widgets/search_bar.dart';
 import 'package:e_commerce/config/app_settings.dart';
 import 'package:e_commerce/presentation/widgets/horizontal_line.dart';
 import 'package:e_commerce/config/colors.dart';
+import 'package:e_commerce/domain/models/product_model.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/views/product_list_view.dart';
 
-class HomeTab extends StatefulWidget {
+class ProductView extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HomeTabState();
+  State<StatefulWidget> createState() => _ProductViewState();
 }
 
-class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
+class _ProductViewState extends State<ProductView>
+    with SingleTickerProviderStateMixin {
   PageController _myPage = PageController(initialPage: 0);
-
   TabController _tabController;
 
   @override
@@ -53,7 +54,7 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                     ),
                     Category(
                       list: categories,
-                      onItemSelected: this._onTabSelected,
+                      onItemSelected: (index) => this._myPage.jumpToPage(index),
                       tabController: this._tabController,
                     ),
                     HorizontalLine(
@@ -80,14 +81,32 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
     );
   }
 
-  _onTabSelected(int index) {
-    this.setState(() => this._myPage.jumpToPage(index));
-  }
-
   List<Widget> _getProductsTabs() {
     var productsTabs = categories.map((categoryModel) {
-      return ProductsTab(
-        categoryModel: categoryModel,
+      return ProductListView(
+        productModelList: [
+          ProductModel(
+              name: 'Lenovo x280',
+              price: '\$ 1399',
+              discount: '-37%',
+              images: ['assets/images/lenovo.jpg']),
+          ProductModel(
+              name: 'Lenovo x280',
+              price: '\$ 1399',
+              discount: '-37%',
+              images: ['assets/images/lenovo.jpg']),
+          ProductModel(
+              name: 'Lenovo x280',
+              price: '\$ 1399',
+              discount: '-37%',
+              images: ['assets/images/lenovo.jpg']),
+          ProductModel(
+              name: 'Lenovo x280',
+              price: '\$ 1399',
+              discount: '-37%',
+              images: ['assets/images/lenovo.jpg'])
+        ],
+        onItemClicked: (index) => {},
       );
     }).toList();
 

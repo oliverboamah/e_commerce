@@ -13,3 +13,6 @@ final categories = [
   CategoryModel(iconData: Icons.directions_bike, name: 'Bike'),
   CategoryModel(iconData: Icons.directions_boat, name: 'Boat'),
 ];
+
+// cache
+final bool cacheEnabled = true;

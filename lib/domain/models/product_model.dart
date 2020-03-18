@@ -1,7 +1,9 @@
 // flutter imports
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-class ProductModel {
+@immutable
+class ProductModel extends Equatable {
   final String discount;
   final List<String> images;
   final String name;
@@ -14,4 +16,7 @@ class ProductModel {
       @required this.name,
       @required this.price,
       this.originalPrice = '1499'});
+
+  @override
+  List<Object> get props => [discount, images, name, price, originalPrice];
 }

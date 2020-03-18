@@ -2,14 +2,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// third party imports
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 // my app imports
 import 'package:e_commerce/presentation/widgets/category.dart';
 import 'package:e_commerce/presentation/widgets/search_bar.dart';
 import 'package:e_commerce/config/app_settings.dart';
 import 'package:e_commerce/presentation/widgets/horizontal_line.dart';
 import 'package:e_commerce/config/colors.dart';
-import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/features/home/tabs/product/views/product_list_view.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/product_bloc.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/product_event.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/product_state.dart';
 
 class ProductView extends StatefulWidget {
   @override
@@ -29,6 +34,12 @@ class _ProductViewState extends State<ProductView>
 
   @override
   Widget build(BuildContext context) {
+    ProductBloc productBloc = BlocProvider.of<ProductBloc>(context);
+
+    if (productBloc.state is ProductInitialState) {
+      productBloc.add(LoadProductsEvent(category: ''));
+    }
+
     return Container(
       color: colorWhite,
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -67,14 +78,17 @@ class _ProductViewState extends State<ProductView>
           ),
           Expanded(
             child: Container(
-              child: PageView(
-                controller: _myPage,
-                children: _getProductsTabs(),
-                onPageChanged: (int) {
-                  this._tabController.animateTo(int);
-                },
-              ),
-            ),
+                child: Center(
+                    child: BlocProvider.of<ProductBloc>(context).state
+                            is ProductsLoadedState
+                        ? PageView(
+                            controller: _myPage,
+                            children: _getProductsTabs(),
+                            onPageChanged: (int) {
+                              this._tabController.animateTo(int);
+                            },
+                          )
+                        : CircularProgressIndicator())),
           )
         ],
       ),
@@ -84,28 +98,9 @@ class _ProductViewState extends State<ProductView>
   List<Widget> _getProductsTabs() {
     var productsTabs = categories.map((categoryModel) {
       return ProductListView(
-        productModelList: [
-          ProductModel(
-              name: 'Lenovo x280',
-              price: '\$ 1399',
-              discount: '-37%',
-              images: ['assets/images/lenovo.jpg']),
-          ProductModel(
-              name: 'Lenovo x280',
-              price: '\$ 1399',
-              discount: '-37%',
-              images: ['assets/images/lenovo.jpg']),
-          ProductModel(
-              name: 'Lenovo x280',
-              price: '\$ 1399',
-              discount: '-37%',
-              images: ['assets/images/lenovo.jpg']),
-          ProductModel(
-              name: 'Lenovo x280',
-              price: '\$ 1399',
-              discount: '-37%',
-              images: ['assets/images/lenovo.jpg'])
-        ],
+        productModelList:
+            (BlocProvider.of<ProductBloc>(context).state as ProductsLoadedState)
+                .products,
         onItemClicked: (index) => {},
       );
     }).toList();

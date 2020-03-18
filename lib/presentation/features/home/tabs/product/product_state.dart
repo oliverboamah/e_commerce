@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:flutter/widgets.dart';
 
 // third party imports
@@ -11,4 +12,14 @@ abstract class ProductState extends Equatable {}
 class ProductInitialState extends ProductState {
   @override
   List<Object> get props => [];
+}
+
+@immutable
+class ProductsLoadedState extends ProductState {
+  final List<ProductModel> products;
+
+  ProductsLoadedState({this.products});
+
+  @override
+  List<Object> get props => [products];
 }

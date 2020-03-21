@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:e_commerce/domain/models/cart_model_list.dart';
 
 class NotificationModel {
+  final int id;
   final CartModelList cartList;
   final String title;
   final String subTitle;
@@ -12,7 +13,8 @@ class NotificationModel {
   final String image;
 
   NotificationModel(
-      {@required this.cartList,
+      {this.id = 0,
+      @required this.cartList,
       @required this.title,
       @required this.subTitle,
       @required this.date,

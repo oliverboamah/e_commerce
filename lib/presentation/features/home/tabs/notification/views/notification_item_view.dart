@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/presentation/widgets/horizontal_line.dart';
 import 'package:e_commerce/domain/models/notification_model.dart';
 
-class NotificationItem extends StatelessWidget {
+class NotificationItemView extends StatelessWidget {
   final NotificationModel notificationModel;
 
-  NotificationItem({@required this.notificationModel});
+  NotificationItemView({@required this.notificationModel});
 
   @override
   Widget build(BuildContext context) {

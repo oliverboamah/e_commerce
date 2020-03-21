@@ -16,4 +16,3 @@ final dangerColor = Color(0xFFF44336);
 final dividerColor = Color(0xFFC4C4C4);
 final primaryIconColor = Color(0xFF212121);
 final bottomNavBarBackgroundColor = Color(0xFFFFFFFF);
-

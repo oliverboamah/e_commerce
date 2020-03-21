@@ -6,19 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/widgets/discount.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItemView extends StatelessWidget {
   final ProductModel productModel;
 
-  ProductItem({this.productModel});
+  ProductItemView({this.productModel});
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          
           children: <Widget>[
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

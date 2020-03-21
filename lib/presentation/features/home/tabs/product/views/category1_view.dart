@@ -61,11 +61,18 @@ class _Category1WrapperState extends State<Category1Wrapper> {
     final List<ProductModel> products =
         BlocProvider.of<ProductBloc>(context).state.products;
 
+    final int maxLength = 50;
     return products.isEmpty
         ? PKGridCardListSkeleton()
         : ProductListView(
+            maxLength: maxLength,
             productModelList: products,
             onItemClicked: () => {},
-          );
+            onScrollEnd: () {
+              if (products.length < maxLength) {
+                BlocProvider.of<ProductBloc>(context)
+                    .add(LoadProductsEvent(category: 'category1'));
+              }
+            });
   }
 }

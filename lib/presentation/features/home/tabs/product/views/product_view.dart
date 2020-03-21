@@ -19,7 +19,6 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView>
     with SingleTickerProviderStateMixin {
-  PageController _myPage = PageController(initialPage: 0);
   TabController _tabController;
 
   @override

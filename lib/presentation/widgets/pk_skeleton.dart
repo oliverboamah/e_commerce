@@ -81,10 +81,10 @@ class _PKGridCardSkeletonState extends State<PKGridCardSkeleton>
       animation: animation,
       builder: (context, child) {
         return Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
           child: Container(
             color: Colors.white,
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0, top: 8.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,

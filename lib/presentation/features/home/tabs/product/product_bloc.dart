@@ -18,10 +18,17 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   @override
   Stream<ProductState> mapEventToState(ProductEvent event) async* {
     if (event is LoadProductsEvent) {
-      List<ProductModel> products =
-          await productRepositoryFactory.getProducts(event.category);
+      List<ProductModel> products = this.state.products;
+      List<ProductModel> newProducts =
+          await productRepositoryFactory.getProducts(event.category,
+              state.products.isNotEmpty ? state.products.last.id : 0, 0);
 
-      yield ProductsLoadedState(products: products);
+      products.addAll(newProducts);
+
+      yield ProductsLoadedState(
+          products: products,
+          lastProductId: products.last.id,
+          productsHashCode: DateTime.now().toIso8601String());
     }
   }
 }

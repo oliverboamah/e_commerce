@@ -22,7 +22,6 @@ class ProductListView extends StatelessWidget {
 
   bool _handleScrollNotification(ScrollNotification notification) {
     if (notification is ScrollEndNotification) {
-      print(_scrollController.position.extentAfter);
       if (_scrollController.position.extentAfter < 180) {
         this.onScrollEnd();
       }

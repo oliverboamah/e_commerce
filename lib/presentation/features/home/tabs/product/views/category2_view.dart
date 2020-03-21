@@ -54,12 +54,18 @@ class _Category2WrapperState extends State<Category2Wrapper> {
   Widget build(BuildContext context) {
     final List<ProductModel> products =
         BlocProvider.of<ProductBloc>(context).state.products;
-
+    final int maxLength = 50;
     return products.isEmpty
         ? PKGridCardListSkeleton()
         : ProductListView(
+            maxLength: maxLength,
             productModelList: products,
             onItemClicked: () => {},
-          );
+            onScrollEnd: () {
+              if (products.length < maxLength) {
+                BlocProvider.of<ProductBloc>(context)
+                    .add(LoadProductsEvent(category: 'category2'));
+              }
+            });
   }
 }

@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/widgets/horizontal_line.dart';
 
-class WishItem extends StatelessWidget {
+class WishlistItem extends StatelessWidget {
   final ProductModel productModel;
 
-  WishItem({@required this.productModel});
+  WishlistItem({@required this.productModel});
 
   @override
   Widget build(BuildContext context) {

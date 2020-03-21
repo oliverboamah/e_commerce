@@ -41,7 +41,9 @@ class _WishlistViewState extends State<WishlistView> {
           },
         ),
         body: products.isEmpty
-            ? PKCardListSkeleton(isBottomLinesActive: false,)
+            ? PKCardListSkeleton(
+                isBottomLinesActive: false,
+              )
             : WishListListView(
                 productModels: products,
                 onItemClicked: () => {},

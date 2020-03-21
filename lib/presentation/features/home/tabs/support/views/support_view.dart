@@ -1,19 +1,25 @@
 // flutter imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 // my app imports
-import 'package:e_commerce/presentation/widgets/app_bar_with_hamburger.dart';
 import 'package:e_commerce/config/colors.dart';
-import 'package:e_commerce/presentation/widgets/secondary_section_header.dart';
+import 'package:e_commerce/presentation/widgets/app_bar_with_hamburger.dart';
 import 'package:e_commerce/config/dimen.dart';
+import 'package:e_commerce/presentation/widgets/secondary_section_header.dart';
 
-class SupportTab extends StatefulWidget {
+class SupportView extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _SupportTabState();
+  State<StatefulWidget> createState() => _SupportViewState();
 }
 
-class _SupportTabState extends State<SupportTab> {
+class _SupportViewState extends State<SupportView> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

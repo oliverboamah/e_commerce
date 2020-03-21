@@ -25,9 +25,15 @@ class ProductInitialState extends ProductState {
 
 @immutable
 class ProductsLoadedState extends ProductState {
-  ProductsLoadedState({
-    List<ProductModel> products,
-  }) : super(
-          products: products,
-        );
+  final String productsHashCode;
+
+  ProductsLoadedState(
+      {List<ProductModel> products, this.productsHashCode, int lastProductId})
+      : super(products: products);
+
+  @override
+  List<Object> get props => [
+        products,
+        productsHashCode,
+      ];
 }

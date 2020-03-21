@@ -18,10 +18,12 @@ class ProductRepositoryFactory {
     this._productFirestoreRepository = ProductFirestoreRepository();
   }
 
-  Future<List<ProductModel>> getProducts(String category) async {
+  Future<List<ProductModel>> getProducts(
+      String category, int productId, int numToLoad) async {
     if (!_internetConnected) {
-      List<ProductModel> products =
-          await this._productLocalRepository.getProducts(category);
+      List<ProductModel> products = await this
+          ._productLocalRepository
+          .getProducts(category, productId, numToLoad);
 
       if (products.isNotEmpty) {
         return products;
@@ -30,10 +32,14 @@ class ProductRepositoryFactory {
 
     switch (this.remoteDataProvider) {
       case RemoteDataProvider.firebase:
-        return await this._productFirestoreRepository.getProducts(category);
+        return await this
+            ._productFirestoreRepository
+            .getProducts(category, productId, numToLoad);
         break;
       default:
-        return await this._productFirestoreRepository.getProducts(category);
+        return await this
+            ._productFirestoreRepository
+            .getProducts(category, productId, numToLoad);
     }
   }
 }

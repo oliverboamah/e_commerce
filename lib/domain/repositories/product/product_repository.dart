@@ -6,5 +6,5 @@ import 'package:e_commerce/domain/models/product_model.dart';
 
 @immutable
 abstract class ProductRepository {
-  Future<List<ProductModel>> getProducts(String category);
+  Future<List<ProductModel>> getProducts(String category, int productId, int numToLoad);
 }

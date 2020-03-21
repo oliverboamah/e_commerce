@@ -4,7 +4,8 @@ import 'package:e_commerce/domain/repositories/product/product_repository.dart';
 
 class ProductFirestoreRepository extends ProductRepository {
   @override
-  Future<List<ProductModel>> getProducts(String category) async {
+  Future<List<ProductModel>> getProducts(
+      String category, int productId, int numToLoad) async {
     int price;
 
     if (category == 'category1') {

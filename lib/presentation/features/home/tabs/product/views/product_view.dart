@@ -1,10 +1,6 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/pk_skeleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// third party imports
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // my app imports
 import 'package:e_commerce/presentation/widgets/category.dart';
@@ -12,10 +8,9 @@ import 'package:e_commerce/presentation/widgets/search_bar.dart';
 import 'package:e_commerce/config/app_settings.dart';
 import 'package:e_commerce/presentation/widgets/horizontal_line.dart';
 import 'package:e_commerce/config/colors.dart';
-import 'package:e_commerce/presentation/features/home/tabs/product/views/product_list_view.dart';
-import 'package:e_commerce/presentation/features/home/tabs/product/product_bloc.dart';
-import 'package:e_commerce/presentation/features/home/tabs/product/product_event.dart';
-import 'package:e_commerce/presentation/features/home/tabs/product/product_state.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/views/category1_view.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/views/category2_view.dart';
+import 'package:e_commerce/presentation/features/home/tabs/product/views/category3_view.dart';
 
 class ProductView extends StatefulWidget {
   @override
@@ -35,12 +30,6 @@ class _ProductViewState extends State<ProductView>
 
   @override
   Widget build(BuildContext context) {
-    ProductBloc productBloc = BlocProvider.of<ProductBloc>(context);
-
-    if (productBloc.state is ProductInitialState) {
-      productBloc.add(LoadProductsEvent(category: ''));
-    }
-
     return Container(
       color: colorWhite,
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -49,63 +38,55 @@ class _ProductViewState extends State<ProductView>
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           DefaultTabController(
-            length: categories.length,
-            child: Container(
-              padding: EdgeInsets.all(0),
-              height: 136.5,
-              child: Container(
-                decoration: BoxDecoration(color: colorWhite, boxShadow: [
-                  BoxShadow(
-                      color: dividerColor, offset: Offset(0, 1), blurRadius: 2),
-                ]),
+              length: categories.length,
+              child: Expanded(
                 child: Column(
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    SearchBar(
-                      onHamburgerClicked: () => {},
-                      onSearchClicked: () => {},
+                    Container(
+                      padding: EdgeInsets.all(0),
+                      height: 136.5,
+                      child: Container(
+                        decoration:
+                            BoxDecoration(color: colorWhite, boxShadow: [
+                          BoxShadow(
+                              color: dividerColor,
+                              offset: Offset(0, 1),
+                              blurRadius: 2),
+                        ]),
+                        child: Column(
+                          children: <Widget>[
+                            SearchBar(
+                              onHamburgerClicked: () => {},
+                              onSearchClicked: () => {},
+                            ),
+                            Category(
+                              list: categories,
+                              onItemSelected: (index) => {},
+                              tabController: this._tabController,
+                            ),
+                            HorizontalLine(
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    Category(
-                      list: categories,
-                      onItemSelected: (index) => this._myPage.jumpToPage(index),
-                      tabController: this._tabController,
-                    ),
-                    HorizontalLine(
-                      width: MediaQuery.of(context).size.width,
+                    Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: <Widget>[
+                          Category1View(),
+                          Category2View(),
+                          Category3View()
+                        ],
+                      ),
                     )
                   ],
                 ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-                child: Center(
-                    child: BlocProvider.of<ProductBloc>(context).state
-                            is ProductsLoadedState
-                        ? PageView(
-                            controller: _myPage,
-                            children: _getProductsTabs(),
-                            onPageChanged: (int) {
-                              this._tabController.animateTo(int);
-                            },
-                          )
-                        : PKGridCardListSkeleton())),
-          )
+              )),
         ],
       ),
     );
-  }
-
-  List<Widget> _getProductsTabs() {
-    var productsTabs = categories.map((categoryModel) {
-      return ProductListView(
-        productModelList:
-            (BlocProvider.of<ProductBloc>(context).state as ProductsLoadedState)
-                .products,
-        onItemClicked: (index) => {},
-      );
-    }).toList();
-
-    return productsTabs;
   }
 }

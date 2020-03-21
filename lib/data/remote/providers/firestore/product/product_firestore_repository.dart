@@ -5,28 +5,87 @@ import 'package:e_commerce/domain/repositories/product/product_repository.dart';
 class ProductFirestoreRepository extends ProductRepository {
   @override
   Future<List<ProductModel>> getProducts(String category) async {
+    int price;
+
+    if (category == 'category1') {
+      price = 2399;
+    } else if (category == 'category2') {
+      price = 100;
+    } else {
+      price = 35000;
+    }
+
     return Future.delayed(Duration(seconds: 4), () {
       return [
         ProductModel(
             name: 'Lenovo x280',
-            price: '\$ 1399',
+            price: '\$$price',
             discount: '-37%',
             images: ['assets/images/lenovo.jpg']),
         ProductModel(
             name: 'Lenovo x280',
-            price: '\$ 1399',
+            price: '\$$price',
             discount: '-37%',
             images: ['assets/images/lenovo.jpg']),
         ProductModel(
             name: 'Lenovo x280',
-            price: '\$ 1399',
+            price: '\$$price',
             discount: '-37%',
             images: ['assets/images/lenovo.jpg']),
         ProductModel(
-            name: 'Lenovo x280',
-            price: '\$ 1399',
-            discount: '-37%',
-            images: ['assets/images/lenovo.jpg'])
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        ),
+        ProductModel(
+          name: 'Lenovo x280',
+          price: '\$$price',
+          discount: '-37%',
+          images: ['assets/images/lenovo.jpg'],
+        )
       ];
     });
   }

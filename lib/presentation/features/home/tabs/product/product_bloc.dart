@@ -13,13 +13,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       ProductRepositoryFactory(remoteDataProvider: RemoteDataProvider.firebase);
 
   @override
-  ProductState get initialState => ProductInitialState();
+  ProductState get initialState => ProductInitialState(products: []);
 
   @override
   Stream<ProductState> mapEventToState(ProductEvent event) async* {
     if (event is LoadProductsEvent) {
       List<ProductModel> products =
           await productRepositoryFactory.getProducts(event.category);
+
       yield ProductsLoadedState(products: products);
     }
   }

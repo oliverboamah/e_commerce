@@ -84,7 +84,8 @@ class _PKGridCardSkeletonState extends State<PKGridCardSkeleton>
           padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
           child: Container(
             color: Colors.white,
-            padding: EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0, top: 8.0),
+            padding: EdgeInsets.only(
+                bottom: 16.0, left: 16.0, right: 16.0, top: 8.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -184,7 +185,10 @@ class _PKCardSkeletonState extends State<PKCardSkeleton>
           padding: const EdgeInsets.all(16.0),
           child: Container(
             color: Colors.white,
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -192,10 +196,11 @@ class _PKCardSkeletonState extends State<PKCardSkeleton>
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      height: width * 0.13,
-                      width: width * 0.13,
+                      height: width * 0.2,
+                      width: width * 0.2,
                       decoration:
                           myBoxDec(animation, isCircle: widget.isCircularImage),
                     ),
@@ -204,17 +209,18 @@ class _PKCardSkeletonState extends State<PKCardSkeleton>
                     ),
                     Container(
                       height: width * 0.13,
+                      padding: EdgeInsets.only(top: 8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            height: height * 0.008,
+                            height: height * 0.01,
                             width: width * 0.3,
                             decoration: myBoxDec(animation),
                           ),
                           Container(
-                            height: height * 0.007,
+                            height: height * 0.01,
                             width: width * 0.2,
                             decoration: myBoxDec(animation),
                           ),

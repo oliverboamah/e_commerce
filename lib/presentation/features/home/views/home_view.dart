@@ -11,10 +11,10 @@ import 'package:e_commerce/presentation/features/home/home_event.dart';
 import 'package:e_commerce/presentation/features/home/tabs/product/product_tab.dart';
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
+import 'package:e_commerce/presentation/features/home/tabs/wishlist/wishlist_tab.dart';
 import '../../../widgets/bottom_navbar.dart';
 import '../../tabs/notification_tab.dart';
 import '../../tabs/support_tab.dart';
-import '../../tabs/wishlist_tab.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
         onPageChanged: (int) {},
         children: [
           ProductTab(),
-          WishListTab(),
+          WishlistTab(),
           SupportTab(),
           NotificationTab()
         ],

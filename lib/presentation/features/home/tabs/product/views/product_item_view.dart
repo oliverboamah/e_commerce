@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // my app imports
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/widgets/discount.dart';
+import 'package:e_commerce/config/app_settings.dart';
 
 class ProductItemView extends StatelessWidget {
   final ProductModel productModel;
@@ -23,7 +24,7 @@ class ProductItemView extends StatelessWidget {
               children: <Widget>[
                 Spacer(),
                 Discount(
-                  discount: -37,
+                  discount: this.productModel.discount,
                 )
               ],
             ),
@@ -42,7 +43,7 @@ class ProductItemView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 5.0),
               child: Text(
-                this.productModel.price,
+                currencySymbol + this.productModel.price,
                 style: Theme.of(context).accentTextTheme.display1,
               ),
             )

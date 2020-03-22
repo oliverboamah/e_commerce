@@ -1,5 +1,4 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/cart/cart_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +9,9 @@ import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/presentation/widgets/app_bar_with_back_icon.dart';
 import 'package:e_commerce/domain/models/cart_model.dart';
 import 'package:e_commerce/domain/models/cart_model_list.dart';
+import 'package:e_commerce/presentation/widgets/cart/cart_list.dart';
 
 class CartPage extends StatefulWidget {
-  final ProductModel productModel;
-
-  CartPage({this.productModel});
-
   @override
   State<StatefulWidget> createState() => _CartPageState();
 }

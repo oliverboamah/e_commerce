@@ -9,9 +9,13 @@ class DeliveryInfoSection extends StatelessWidget {
   final String headerTitle;
   final String body1;
   final String body2;
+  final Function onDetailsClicked;
 
   DeliveryInfoSection(
-      {@required this.headerTitle, @required this.body1, @required this.body2});
+      {@required this.headerTitle,
+      @required this.body1,
+      @required this.body2,
+      @required this.onDetailsClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +34,12 @@ class DeliveryInfoSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.body1,
               ),
             ),
-            Text(
-              'Details',
-              style: Theme.of(context).accentTextTheme.body2,
+            InkWell(
+              child: Text(
+                'Details',
+                style: Theme.of(context).accentTextTheme.body2,
+              ),
+              onTap: this.onDetailsClicked,
             )
           ],
         ),

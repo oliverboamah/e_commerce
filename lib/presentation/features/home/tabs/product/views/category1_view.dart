@@ -11,6 +11,7 @@ import 'package:e_commerce/presentation/features/home/tabs/product/product_event
 import 'package:e_commerce/presentation/features/home/tabs/product/product_state.dart';
 import 'package:e_commerce/presentation/features/home/tabs/product/views/product_list_view.dart';
 import 'package:e_commerce/presentation/widgets/pk_skeleton.dart';
+import 'package:e_commerce/config/routes.dart';
 
 class Category1View extends StatefulWidget {
   @override
@@ -19,11 +20,7 @@ class Category1View extends StatefulWidget {
 
 class _Category1ViewState extends State<Category1View>
     with AutomaticKeepAliveClientMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -67,7 +64,8 @@ class _Category1WrapperState extends State<Category1Wrapper> {
         : ProductListView(
             maxLength: maxLength,
             productModelList: products,
-            onItemClicked: () => {},
+            onItemClicked: (index) =>
+                Routes.goToProductDetailScreen(context, products[index]),
             onScrollEnd: () {
               if (products.length < maxLength) {
                 BlocProvider.of<ProductBloc>(context)

@@ -16,3 +16,6 @@ final categories = [
 
 // cache
 final bool cacheEnabled = true;
+
+// currency symbol
+final String currencySymbol = '\$';

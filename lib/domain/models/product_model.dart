@@ -12,6 +12,9 @@ class ProductModel extends Equatable {
   final String name;
   final String price;
   final String originalPrice;
+  final String deliveryInfoLine1;
+  final String deliveryInfoLine2;
+  final String detail;
 
   ProductModel(
       {this.id = 0,
@@ -19,8 +22,21 @@ class ProductModel extends Equatable {
       @required this.images,
       @required this.name,
       @required this.price,
-      this.originalPrice = '1499'});
+      this.originalPrice = '1499',
+      this.deliveryInfoLine1 = '',
+      this.deliveryInfoLine2 = '',
+      this.detail = ''});
 
   @override
-  List<Object> get props => [id, discount, images, name, price, originalPrice];
+  List<Object> get props => [
+        id,
+        discount,
+        images,
+        name,
+        price,
+        originalPrice,
+        deliveryInfoLine1,
+        deliveryInfoLine2,
+        detail
+      ];
 }

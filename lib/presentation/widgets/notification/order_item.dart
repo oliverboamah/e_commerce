@@ -62,7 +62,7 @@ class OrderItem extends StatelessWidget {
                             ),
                           ),
                           Discount(
-                            discount: -37,
+                            discount: '-37%',
                           )
                         ],
                       ),

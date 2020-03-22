@@ -1,5 +1,4 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/products/product_detail_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,26 +12,34 @@ import 'package:e_commerce/presentation/widgets/delivery_info_section.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/presentation/widgets/button_with_icon.dart';
 import 'package:e_commerce/presentation/widgets/quantity_counter.dart';
+import 'package:e_commerce/presentation/widgets/products/product_detail_section.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_commerce/config/app_settings.dart';
+import 'package:e_commerce/presentation/features/product/product_detail_bloc.dart';
+import 'package:e_commerce/presentation/features/product/product_detail_event.dart';
 
-class ProductDetailPage extends StatefulWidget {
+class ProductDetailView extends StatefulWidget {
   final ProductModel productModel;
 
-  ProductDetailPage({this.productModel});
+  ProductDetailView({@required this.productModel});
 
   @override
-  State<StatefulWidget> createState() => _ProductDetailPageState();
+  State<StatefulWidget> createState() => _ProductDetailViewState();
 }
 
-class _ProductDetailPageState extends State<ProductDetailPage> {
+class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
+    final ProductDetailBloc productDetailBloc =
+        BlocProvider.of<ProductDetailBloc>(context);
+
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBarWithCart(
         context: context,
         appBarTitle: this.widget.productModel.name,
         onCartClicked: () {
-          print('cart clicked');
+          productDetailBloc.add(OpenCartScreenEvent());
         },
       ),
       body: Column(
@@ -68,7 +75,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
-                            this.widget.productModel.price,
+                            currencySymbol + this.widget.productModel.price,
                             style: Theme.of(context).accentTextTheme.display1,
                           ),
                         ),
@@ -79,22 +86,30 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               Padding(
                                 padding: EdgeInsets.only(right: 8.0, top: 4.0),
                                 child: Text(
-                                  '\$255',
+                                  currencySymbol +
+                                      '${this.widget.productModel.originalPrice}',
                                   style: Theme.of(context)
                                       .accentTextTheme
                                       .overline,
                                 ),
                               ),
                               Discount(
-                                discount: -37,
+                                discount: this.widget.productModel.discount,
                               ),
                               Spacer(),
                               IconButton(
                                 icon: Icon(
-                                  Icons.favorite_border,
+                                  productDetailBloc.state.isAddedToWishlist
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
                                   color: secondaryTextColor,
                                 ),
-                                onPressed: () => {},
+                                onPressed: () {
+                                  productDetailBloc.add(
+                                      AddProductToWishlistEvent(
+                                          productModel:
+                                              this.widget.productModel));
+                                },
                               )
                             ],
                           ),
@@ -104,13 +119,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                   DeliveryInfoSection(
                     headerTitle: 'Delivery Information',
-                    body1: 'Express delivery in main cities.',
-                    body2: 'Delivered by thursday 2 Jan',
+                    body1: this.widget.productModel.deliveryInfoLine1,
+                    body2: this.widget.productModel.deliveryInfoLine2,
+                    onDetailsClicked: () {
+                      productDetailBloc.add(ShowDeliveryInfoModalEvent());
+                    },
                   ),
                   ProductDetailSection(
                     headerTitle: 'Product Detail',
-                    body1:
-                        '- Display 12.4’” HD, retina display \n- Memory: 256 SSD, 16 GB RAM',
+                    body1: this.widget.productModel.detail,
                   )
                 ],
               ),
@@ -136,9 +153,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ],
                 ),
                 ButtonWithIcon(
-                  text: 'ADD TO CART',
+                  text: productDetailBloc.state.isAddedToCart
+                      ? 'ADDED TO CART'
+                      : 'ADD TO CART',
                   icon: Icon(Icons.shopping_cart),
-                  onPressed: () => {},
+                  onPressed: !productDetailBloc.state.isAddedToCart
+                      ? () {
+                          // add it to the cart in home bloc first, then
+                          productDetailBloc.add(AddProductToCartEvent());
+                        }
+                      : () {},
                 )
               ],
             ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/config/colors.dart';
 
 class Discount extends StatelessWidget {
-  final int discount;
+  final String discount;
 
   Discount({this.discount});
 
@@ -17,7 +17,7 @@ class Discount extends StatelessWidget {
             color: primaryHighlightColor,
             borderRadius: BorderRadius.circular(4.0)),
         child: Text(
-          '${this.discount}%',
+          '${this.discount}',
           style: Theme.of(context).accentTextTheme.body1,
         ));
   }

@@ -9,7 +9,6 @@ import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/home_state.dart';
 import 'package:e_commerce/presentation/features/home/views/home_view.dart';
 import 'package:e_commerce/config/routes.dart';
-import 'package:e_commerce/domain/models/product_model.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -40,15 +39,8 @@ class _HomeWrapperState extends State<HomeWrapper> {
           listener: (BuildContext context, HomeState state) {
             if (state is OpenCartState) {
               Routes.goToCartScreen(
-                  context,
-                  ProductModel(
-                      name: 'Lenovo x280',
-                      price: '\$ 1399',
-                      discount: '-37%',
-                      images: [
-                        'assets/images/lenovo.jpg',
-                        'assets/images/lenovo.jpg',
-                      ]));
+                context,
+              );
             }
           },
           child: HomeView(),

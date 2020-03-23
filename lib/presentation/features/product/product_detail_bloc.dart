@@ -7,8 +7,8 @@ import 'package:e_commerce/presentation/features/product/product_detail_state.da
 
 class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   @override
-  ProductDetailState get initialState =>
-      ProductDetailInitialState(isAddedToCart: false, isAddedToWishlist: false);
+  ProductDetailState get initialState => ProductDetailInitialState(
+      isAddedToCart: false, isAddedToWishlist: false, quantity: 1);
 
   @override
   Stream<ProductDetailState> mapEventToState(ProductDetailEvent event) async* {
@@ -16,19 +16,24 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
       yield ProductAddedToWishlistState(
           // save product to wishlist local db
           isAddedToWishlist: !this.state.isAddedToWishlist,
-          isAddedToCart: this.state.isAddedToCart);
+          isAddedToCart: this.state.isAddedToCart,
+          quantity: this.state.quantity);
     } else if (event is AddProductToCartEvent) {
       yield ProductAddedToCartState(
-          isAddedToWishlist: this.state.isAddedToWishlist, isAddedToCart: true);
+          isAddedToWishlist: this.state.isAddedToWishlist,
+          isAddedToCart: true,
+          quantity: this.state.quantity);
     } else if (event is OpenCartScreenEvent) {
       yield OpenCartScreenState(
           isAddedToWishlist: this.state.isAddedToWishlist,
           isAddedToCart: this.state.isAddedToCart,
+          quantity: this.state.quantity,
           uId: DateTime.now().toIso8601String());
     } else if (event is ShowDeliveryInfoModalEvent) {
       yield ShowDeliveryInfoModalState(
           isAddedToWishlist: this.state.isAddedToWishlist,
           isAddedToCart: this.state.isAddedToCart,
+          quantity: this.state.quantity,
           uId: DateTime.now().toIso8601String());
     }
   }

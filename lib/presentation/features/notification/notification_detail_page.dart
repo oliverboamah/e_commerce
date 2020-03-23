@@ -33,7 +33,6 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
     for (int i = 0; i < 20; i++) {
       this.cartModelList.add(CartModel(
             status: 'pending',
-            delivery: 'Delivered between Friday Jan 3 and Tuesday 7 Jan',
             productModel: ProductModel(
                 name: 'Lenovo x280',
                 price: '\$ 1399',

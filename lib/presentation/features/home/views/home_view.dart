@@ -15,6 +15,7 @@ import 'package:e_commerce/presentation/features/home/tabs/wishlist/wishlist_tab
 import 'package:e_commerce/presentation/features/home/tabs/support/support_tab.dart';
 import 'package:e_commerce/presentation/widgets/bottom_navbar.dart';
 import 'package:e_commerce/presentation/features/home/tabs/notification/notification_tab.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -26,6 +27,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    HomeContext.context = context;
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavBar(

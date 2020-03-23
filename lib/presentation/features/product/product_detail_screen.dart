@@ -1,4 +1,9 @@
 // flutter imports
+import 'package:e_commerce/domain/models/cart_model.dart';
+import 'package:e_commerce/presentation/features/home/home_bloc.dart';
+import 'package:e_commerce/presentation/features/home/home_event.dart';
+import 'package:e_commerce/presentation/features/home/home_screen.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 import 'package:flutter/widgets.dart';
 
 // third party imports
@@ -49,6 +54,8 @@ class ProductDetailWrapper extends StatefulWidget {
 class _ProductDetailWrapperState extends State<ProductDetailWrapper> {
   @override
   Widget build(BuildContext context) {
+    final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(HomeContext.context);
+
     return BlocBuilder<ProductDetailBloc, ProductDetailState>(
       builder: (BuildContext context, ProductDetailState state) {
         return BlocListener<ProductDetailBloc, ProductDetailState>(
@@ -56,6 +63,10 @@ class _ProductDetailWrapperState extends State<ProductDetailWrapper> {
               if (state is ProductAddedToWishlistState) {
                 print(state.isAddedToWishlist);
               } else if (state is ProductAddedToCartState) {
+                CartModel cartModel = CartModel(
+                    productModel: this.widget.productModel,
+                    quantity: state.quantity);
+                homeBloc.add(AddProductToCartEvent(cartModel: cartModel));
                 print(state.isAddedToCart);
               } else if (state is ShowDeliveryInfoModalState) {
                 print('Show Delivery Info Modal State');

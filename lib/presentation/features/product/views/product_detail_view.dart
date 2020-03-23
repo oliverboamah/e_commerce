@@ -149,7 +149,10 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       'Quantity',
                       style: Theme.of(context).accentTextTheme.display1,
                     ),
-                    QuantityCounter()
+                    QuantityCounter(
+                      quantity: 1,
+                      onQuantityChanged: (index) => {},
+                    )
                   ],
                 ),
                 ButtonWithIcon(

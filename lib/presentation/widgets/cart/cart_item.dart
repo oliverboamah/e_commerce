@@ -10,8 +10,9 @@ import 'package:e_commerce/presentation/widgets/quantity_counter.dart';
 
 class CartItem extends StatelessWidget {
   final CartModel cartModel;
+  final onProductChanged;
 
-  CartItem({@required this.cartModel});
+  CartItem({@required this.cartModel, @required this.onProductChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,17 @@ class CartItem extends StatelessWidget {
                         this.cartModel.productModel.originalPrice,
                         style: Theme.of(context).accentTextTheme.overline,
                       ),
-                      QuantityCounter()
+                      QuantityCounter(
+                        quantity: this.cartModel.quantity,
+                        onQuantityChanged: (quantity) {
+                          CartModel cartModel = CartModel(
+                              productModel: this.cartModel.productModel,
+                              status: this.cartModel.status,
+                              quantity: quantity,
+                              delivery: this.cartModel.delivery);
+                          this.onProductChanged(cartModel);
+                        },
+                      )
                     ],
                   ),
                   Spacer(),

@@ -6,12 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:e_commerce/config/colors.dart';
 
 class QuantityCounter extends StatefulWidget {
+  final int quantity;
+  final Function onQuantityChanged;
+  QuantityCounter({@required this.quantity, @required this.onQuantityChanged});
+
   @override
   State<StatefulWidget> createState() => _QuantityCounterState();
 }
 
 class _QuantityCounterState extends State<QuantityCounter> {
-  int _quantity = 1;
+  int _quantity;
+
+  @override
+  void initState() {
+    super.initState();
+    this._quantity = this.widget.quantity;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,10 @@ class _QuantityCounterState extends State<QuantityCounter> {
                 Icons.add,
                 color: primaryColor,
               )),
-          onTap: () => this.setState(() => this._quantity = this._quantity + 1),
+          onTap: () {
+            this.widget.onQuantityChanged(this._quantity + 1);
+            this.setState(() => this._quantity = this._quantity + 1);
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -48,6 +61,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
               )),
           onTap: () {
             if (this._quantity > 1) {
+              this.widget.onQuantityChanged(this._quantity - 1);
               this.setState(() => this._quantity = this._quantity - 1);
             }
           },

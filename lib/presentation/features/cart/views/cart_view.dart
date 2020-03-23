@@ -2,47 +2,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// third party imports
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 // my app imports
-import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/config/dimen.dart';
-import 'package:e_commerce/presentation/widgets/app_bar_with_back_icon.dart';
-import 'package:e_commerce/domain/models/cart_model.dart';
 import 'package:e_commerce/domain/models/cart_model_list.dart';
+import 'package:e_commerce/presentation/widgets/app_bar_with_back_icon.dart';
 import 'package:e_commerce/presentation/widgets/cart/cart_list.dart';
+import 'package:e_commerce/presentation/features/home/home_bloc.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
+import 'package:e_commerce/domain/models/cart_model.dart';
+import 'package:e_commerce/presentation/features/cart/cart_bloc.dart';
+import 'package:e_commerce/presentation/features/cart/cart_event.dart';
 
-class CartPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _CartPageState();
-}
-
-class _CartPageState extends State<CartPage> {
-  CartModelList cartModelList = CartModelList();
-
-  @override
-  void initState() {
-    super.initState();
-    loadData();
-  }
-
-  void loadData() {
-    for (int i = 0; i < 20; i++) {
-      this.cartModelList.add(CartModel(
-            status: 'pending',
-            productModel: ProductModel(
-                name: 'Lenovo x280',
-                price: '\$ 1399',
-                discount: '-37%',
-                images: [
-                  'assets/images/lenovo.jpg',
-                  'assets/images/lenovo.jpg',
-                ]),
-          ));
-    }
-  }
-
+class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CartModelList cartModelList = CartModelList();
+    if (HomeContext.context != null) {
+      cartModelList = BlocProvider.of<HomeBloc>(HomeContext.context).state.cart;
+    }
+
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBarWithBackIcon(
@@ -53,8 +35,12 @@ class _CartPageState extends State<CartPage> {
         children: <Widget>[
           Expanded(
             child: CartList(
-              cartModelList: this.cartModelList,
+              cartModelList: cartModelList,
               onItemClicked: (index) => {},
+              onProductChanged: (int index, CartModel cartModel) {
+                BlocProvider.of<CartBloc>(context).add(UpdateProductInCartEvent(
+                    index: index, cartModel: cartModel));
+              },
             ),
           ),
           Container(

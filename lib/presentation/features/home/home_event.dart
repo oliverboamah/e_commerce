@@ -31,3 +31,30 @@ class AddProductToCartEvent extends HomeEvent {
   @override
   String toString() => 'Add Product to Cart Event';
 }
+
+@immutable
+class RemoveProductFromCartEvent extends HomeEvent {
+  final CartModel cartModel;
+
+  RemoveProductFromCartEvent({this.cartModel});
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Remove Product to Cart Event';
+}
+
+@immutable
+class UpdateProductInCartEvent extends HomeEvent {
+  final CartModel cartModel;
+  final int index;
+
+  UpdateProductInCartEvent({this.cartModel, @required this.index});
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Update Product in Cart Event';
+}

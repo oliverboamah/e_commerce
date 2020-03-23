@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // my app imports
 import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 import 'package:e_commerce/presentation/features/account/register/register_screen.dart';
-import 'package:e_commerce/presentation/features/cart/cart_page.dart';
 import 'package:e_commerce/presentation/features/home/home_screen.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_screen.dart';
+import 'package:e_commerce/presentation/features/cart/cart_screen.dart';
 
 class Routes {
   static void goToLoginScreen(BuildContext context) {
@@ -39,6 +39,6 @@ class Routes {
     BuildContext context,
   ) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CartPage()));
+        context, MaterialPageRoute(builder: (context) => CartScreen()));
   }
 }

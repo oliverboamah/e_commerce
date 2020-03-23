@@ -34,4 +34,8 @@ class CartModelList {
   int size() {
     return this.list.length;
   }
+
+  void update(int index, CartModel cartModel) {
+    this.list[index] = cartModel;
+  }
 }

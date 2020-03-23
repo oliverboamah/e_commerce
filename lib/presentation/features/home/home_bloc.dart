@@ -13,12 +13,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is OpenCartEvent) {
-      yield OpenCartState(cart: this.state.cart);
+      yield OpenCartState(
+          cart: this.state.cart, uId: DateTime.now().toIso8601String());
     } else if (event is AddProductToCartEvent) {
       CartModelList cart = this.state.cart;
       cart.add(event.cartModel);
 
       yield ProductAddedToCartState(cart: cart);
+    } else if (event is RemoveProductFromCartEvent) {
+      CartModelList cart = this.state.cart;
+      cart.remove(event.cartModel);
+
+      yield ProductRemovedFromCartState(cart: cart);
+    } else if (event is UpdateProductInCartEvent) {
+      CartModelList cart = this.state.cart;
+      cart.update(event.index, event.cartModel);
+      yield ProductUpdatedInCartState(
+        cart: cart,
+      );
     }
   }
 }

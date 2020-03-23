@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/presentation/widgets/badge.dart';
-import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/config/colors.dart';
 
 class AppBarWithCart extends AppBar {
-  final String appBarTitle;
-  final Function onCartClicked;
-
   AppBarWithCart(
-      {@required this.appBarTitle, @required BuildContext context, this.onCartClicked})
+      {@required String appBarTitle,
+      @required BuildContext context,
+      Function onCartClicked,
+      @required int cartLength})
       : super(
           elevation: 1,
           centerTitle: true,
@@ -32,7 +31,7 @@ class AppBarWithCart extends AppBar {
                     Icons.shopping_cart,
                     color: primaryIconColor,
                   ),
-                  text: '3',
+                  text: '$cartLength',
                   badgeColor: primaryColor,
                 ),
               ),

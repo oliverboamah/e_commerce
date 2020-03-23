@@ -1,4 +1,4 @@
-// flutter imports
+// flutter imports;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +17,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/config/app_settings.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_bloc.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_event.dart';
+import 'package:e_commerce/presentation/features/home/home_bloc.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 
 class ProductDetailView extends StatefulWidget {
   final ProductModel productModel;
@@ -36,6 +38,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBarWithCart(
+        cartLength:
+            BlocProvider.of<HomeBloc>(HomeContext.context).state.cart.size(),
         context: context,
         appBarTitle: this.widget.productModel.name,
         onCartClicked: () {

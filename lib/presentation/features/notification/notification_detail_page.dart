@@ -1,6 +1,4 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/checkout/address_section.dart';
-import 'package:e_commerce/presentation/widgets/notification/notification_detail_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +10,11 @@ import 'package:e_commerce/domain/models/cart_model.dart';
 import 'package:e_commerce/domain/models/cart_model_list.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/config/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_commerce/presentation/features/home/home_bloc.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
+import 'package:e_commerce/presentation/widgets/checkout/address_section.dart';
+import 'package:e_commerce/presentation/widgets/notification/notification_detail_list.dart';
 
 class NotificationDetailPage extends StatefulWidget {
   @override
@@ -49,6 +52,8 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWithCart(
+        cartLength:
+            BlocProvider.of<HomeBloc>(HomeContext.context).state.cart.size(),
         appBarTitle: 'Items Delivered',
         onCartClicked: () => {},
         context: context,

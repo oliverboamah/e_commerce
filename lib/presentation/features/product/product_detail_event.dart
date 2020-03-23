@@ -43,3 +43,16 @@ class ShowDeliveryInfoModalEvent extends ProductDetailEvent {
   @override
   String toString() => 'Show Delivery Info modal Event';
 }
+
+@immutable
+class UpdateProductQuantity extends ProductDetailEvent {
+  final int quantity;
+
+  UpdateProductQuantity({@required this.quantity});
+
+  @override
+  List<Object> get props => [quantity];
+
+  @override
+  String toString() => 'Update Product Quantity Event';
+}

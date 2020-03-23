@@ -27,6 +27,10 @@ class CartModelList {
     return this.list[index];
   }
 
+  List<CartModel> all() {
+    return this.list;
+  }
+
   int size() {
     return this.list.length;
   }

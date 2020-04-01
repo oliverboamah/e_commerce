@@ -45,7 +45,7 @@ class _CartWrapperState extends State<CartWrapper> {
             } else if (state is UpdateProductInCartState) {
               if (HomeContext.context != null) {
                 BlocProvider.of<HomeBloc>(HomeContext.context).add(
-                    UpdateProductInCartEvent(
+                    UpdateProductIndexInCartEvent(
                         index: state.index, cartModel: state.cartModel));
               }
             }

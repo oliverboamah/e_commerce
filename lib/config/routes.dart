@@ -35,10 +35,10 @@ class Routes {
                 )));
   }
 
-  static void goToCartScreen(
+  static Future<String> goToCartScreen(
     BuildContext context,
-  ) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CartScreen()));
+  ) async {
+    return await Navigator.push(
+        context, MaterialPageRoute<String>(builder: (context) => CartScreen()));
   }
 }

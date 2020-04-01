@@ -18,7 +18,7 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
           isAddedToWishlist: !this.state.isAddedToWishlist,
           isAddedToCart: this.state.isAddedToCart,
           quantity: this.state.quantity);
-    } else if (event is AddProductToCartEvent) {
+    } else if (event is AppendProductToCartEvent) {
       yield ProductAddedToCartState(
           isAddedToWishlist: this.state.isAddedToWishlist,
           isAddedToCart: true,
@@ -34,6 +34,18 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
           isAddedToWishlist: this.state.isAddedToWishlist,
           isAddedToCart: this.state.isAddedToCart,
           quantity: this.state.quantity,
+          uId: DateTime.now().toIso8601String());
+    } else if (event is RefreshProductDetailEvent) {
+      yield ProductRefreshedState(
+          isAddedToWishlist: this.state.isAddedToWishlist,
+          isAddedToCart: this.state.isAddedToCart,
+          quantity: this.state.quantity,
+          uId: DateTime.now().toIso8601String());
+    } else if (event is UpdateProductQuantityEvent) {
+      yield ProductQuantityUpdatedState(
+          isAddedToWishlist: this.state.isAddedToWishlist,
+          isAddedToCart: this.state.isAddedToCart,
+          quantity: event.quantity,
           uId: DateTime.now().toIso8601String());
     }
   }

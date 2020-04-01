@@ -25,9 +25,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       cart.remove(event.cartModel);
 
       yield ProductRemovedFromCartState(cart: cart);
+    } else if (event is UpdateProductIndexInCartEvent) {
+      CartModelList cart = this.state.cart;
+      cart.updateIndex(event.index, event.cartModel);
+      yield ProductUpdatedInCartState(
+        cart: cart,
+      );
     } else if (event is UpdateProductInCartEvent) {
       CartModelList cart = this.state.cart;
-      cart.update(event.index, event.cartModel);
+      cart.update(event.cartModel);
       yield ProductUpdatedInCartState(
         cart: cart,
       );

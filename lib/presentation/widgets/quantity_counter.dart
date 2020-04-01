@@ -18,13 +18,9 @@ class _QuantityCounterState extends State<QuantityCounter> {
   int _quantity;
 
   @override
-  void initState() {
-    super.initState();
-    this._quantity = this.widget.quantity;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    _quantity = this.widget.quantity;
+
     return Row(
       children: <Widget>[
         InkWell(

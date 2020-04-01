@@ -46,11 +46,24 @@ class RemoveProductFromCartEvent extends HomeEvent {
 }
 
 @immutable
-class UpdateProductInCartEvent extends HomeEvent {
+class UpdateProductIndexInCartEvent extends HomeEvent {
   final CartModel cartModel;
   final int index;
 
-  UpdateProductInCartEvent({this.cartModel, @required this.index});
+  UpdateProductIndexInCartEvent({this.cartModel, @required this.index});
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Update Product with index in Cart Event';
+}
+
+@immutable
+class UpdateProductInCartEvent extends HomeEvent {
+  final CartModel cartModel;
+
+  UpdateProductInCartEvent({this.cartModel});
 
   @override
   List<Object> get props => [];

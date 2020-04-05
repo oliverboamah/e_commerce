@@ -13,6 +13,7 @@ import 'package:e_commerce/config/routes.dart';
 import 'package:e_commerce/domain/models/cart_model.dart';
 import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/views/home_context.dart';
+import 'package:e_commerce/presentation/widgets/messages.dart';
 
 class ProductDetalScreen extends StatefulWidget {
   final ProductModel productModel;
@@ -56,7 +57,17 @@ class _ProductDetailWrapperState extends State<ProductDetailWrapper> {
         return BlocListener<ProductDetailBloc, ProductDetailState>(
             listener: (BuildContext context, ProductDetailState state) {
               if (state is ProductAddedToWishlistState) {
-                print(state.isAddedToWishlist);
+                if (state.isAddedToWishlist) {
+                  Messages(
+                    message: 'Product has been added to your Wishlist',
+                    messageType: MessageType.success,
+                  ).show(context);
+                } else {
+                  Messages(
+                    message: 'Product has been removed from your Wishlist',
+                    messageType: MessageType.info,
+                  ).show(context);
+                }
               } else if (state is ShowDeliveryInfoModalState) {
               } else if (state is OpenCartScreenState) {
                 Routes.goToCartScreen(context);

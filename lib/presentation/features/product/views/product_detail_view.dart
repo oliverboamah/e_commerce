@@ -14,13 +14,13 @@ import 'package:e_commerce/presentation/widgets/discount.dart';
 import 'package:e_commerce/presentation/widgets/delivery_info_section.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/presentation/widgets/button_with_icon.dart';
-import 'package:e_commerce/presentation/widgets/quantity_counter.dart';
 import 'package:e_commerce/presentation/widgets/products/product_detail_section.dart';
 import 'package:e_commerce/config/app_settings.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_bloc.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_event.dart';
 import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/views/home_context.dart';
+import 'package:e_commerce/presentation/features/home/home_event.dart';
 
 class ProductDetailView extends StatefulWidget {
   final CartModel cartModel;
@@ -34,14 +34,15 @@ class ProductDetailView extends StatefulWidget {
 class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
+    final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(HomeContext.context);
+
     final ProductDetailBloc productDetailBloc =
         BlocProvider.of<ProductDetailBloc>(context);
 
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBarWithCart(
-        cartLength:
-            BlocProvider.of<HomeBloc>(HomeContext.context).state.cart.size(),
+        cartLength: homeBloc.state.cart.size(),
         context: context,
         appBarTitle: this.widget.cartModel.productModel.name,
         onCartClicked: () {
@@ -152,32 +153,14 @@ class _ProductDetailViewState extends State<ProductDetailView> {
             ]),
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      'Quantity',
-                      style: Theme.of(context).accentTextTheme.display1,
-                    ),
-                    QuantityCounter(
-                      quantity: this.widget.cartModel.quantity,
-                      onQuantityChanged: (quantity) {
-                        productDetailBloc.add(
-                            UpdateProductQuantityEvent(quantity: quantity));
-                      },
-                    )
-                  ],
-                ),
                 ButtonWithIcon(
-                  text: productDetailBloc.state.isAddedToCart
-                      ? 'ADDED TO CART'
-                      : 'ADD TO CART',
+                  text: 'ADD TO CART',
                   icon: Icon(Icons.shopping_cart),
-                  onPressed: !productDetailBloc.state.isAddedToCart
-                      ? () {
-                          productDetailBloc.add(AppendProductToCartEvent());
-                        }
-                      : () {},
+                  onPressed: () {
+                    homeBloc.add(AddProductToCartEvent(
+                        cartModel: this.widget.cartModel));
+                    productDetailBloc.add(RefreshScreenEvent());
+                  },
                 )
               ],
             ),

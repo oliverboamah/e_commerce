@@ -8,9 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/presentation/features/cart/cart_bloc.dart';
 import 'package:e_commerce/presentation/features/cart/cart_state.dart';
 import 'package:e_commerce/presentation/features/cart/views/cart_view.dart';
-import 'package:e_commerce/presentation/features/home/home_bloc.dart';
-import 'package:e_commerce/presentation/features/home/home_event.dart';
-import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -40,15 +37,7 @@ class _CartWrapperState extends State<CartWrapper> {
         return BlocListener<CartBloc, CartState>(
           listener: (BuildContext context, CartState state) {
             if (state is CallToOrderState) {
-            } else if (state is CompleteOrderState) {
-            } else if (state is RemoveProductFromCartState) {
-            } else if (state is UpdateProductInCartState) {
-              if (HomeContext.context != null) {
-                BlocProvider.of<HomeBloc>(HomeContext.context).add(
-                    UpdateProductIndexInCartEvent(
-                        index: state.index, cartModel: state.cartModel));
-              }
-            }
+            } else if (state is CompleteOrderState) {}
           },
           child: CartView(),
         );

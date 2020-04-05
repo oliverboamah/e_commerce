@@ -15,16 +15,6 @@ abstract class CartState extends Equatable {
 class CartInitialState extends CartState {}
 
 @immutable
-class RemoveProductFromCartState extends CartState {
-  final String uId;
-
-  RemoveProductFromCartState({@required this.uId});
-
-  @override
-  List<Object> get props => [uId];
-}
-
-@immutable
 class CallToOrderState extends CartState {
   final String uId;
 
@@ -45,13 +35,11 @@ class CompleteOrderState extends CartState {
 }
 
 @immutable
-class UpdateProductInCartState extends CartState {
-  final CartModel cartModel;
-  final int index;
+class CartScreenRefreshedState extends CartState {
   final String uId;
 
-  UpdateProductInCartState({this.uId, this.cartModel, this.index});
+  CartScreenRefreshedState({this.uId});
 
   @override
-  List<Object> get props => [cartModel, index, uId];
+  List<Object> get props => [uId];
 }

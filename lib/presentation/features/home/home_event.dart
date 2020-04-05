@@ -26,7 +26,7 @@ class AddProductToCartEvent extends HomeEvent {
   AddProductToCartEvent({this.cartModel});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [cartModel];
 
   @override
   String toString() => 'Add Product to Cart Event';
@@ -39,35 +39,22 @@ class RemoveProductFromCartEvent extends HomeEvent {
   RemoveProductFromCartEvent({this.cartModel});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [cartModel];
 
   @override
   String toString() => 'Remove Product to Cart Event';
 }
 
 @immutable
-class UpdateProductIndexInCartEvent extends HomeEvent {
+class UpdateProductInCartEvent extends HomeEvent {
   final CartModel cartModel;
   final int index;
 
-  UpdateProductIndexInCartEvent({this.cartModel, @required this.index});
+  UpdateProductInCartEvent({this.cartModel, @required this.index});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [cartModel, index];
 
   @override
   String toString() => 'Update Product with index in Cart Event';
-}
-
-@immutable
-class UpdateProductInCartEvent extends HomeEvent {
-  final CartModel cartModel;
-
-  UpdateProductInCartEvent({this.cartModel});
-
-  @override
-  List<Object> get props => [];
-
-  @override
-  String toString() => 'Update Product in Cart Event';
 }

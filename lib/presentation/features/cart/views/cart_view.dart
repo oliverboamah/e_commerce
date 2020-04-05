@@ -14,6 +14,7 @@ import 'package:e_commerce/presentation/widgets/cart/cart_list.dart';
 import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 import 'package:e_commerce/domain/models/cart_model.dart';
+import 'package:e_commerce/presentation/features/home/home_event.dart';
 import 'package:e_commerce/presentation/features/cart/cart_bloc.dart';
 import 'package:e_commerce/presentation/features/cart/cart_event.dart';
 
@@ -21,8 +22,10 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartModelList cartModelList = CartModelList();
+    HomeBloc homeBloc;
     if (HomeContext.context != null) {
-      cartModelList = BlocProvider.of<HomeBloc>(HomeContext.context).state.cart;
+      homeBloc = BlocProvider.of<HomeBloc>(HomeContext.context);
+      cartModelList = homeBloc.state.cart;
     }
 
     return Scaffold(
@@ -38,8 +41,10 @@ class CartView extends StatelessWidget {
               cartModelList: cartModelList,
               onItemClicked: (index) => {},
               onProductChanged: (int index, CartModel cartModel) {
-                BlocProvider.of<CartBloc>(context).add(UpdateProductInCartEvent(
+                homeBloc.add(UpdateProductInCartEvent(
                     index: index, cartModel: cartModel));
+                BlocProvider.of<CartBloc>(context)
+                    .add(RefreshCartScreenEvent());
               },
             ),
           ),

@@ -17,26 +17,33 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           cart: this.state.cart, uId: DateTime.now().toIso8601String());
     } else if (event is AddProductToCartEvent) {
       CartModelList cart = this.state.cart;
-      cart.add(event.cartModel);
-
-      yield ProductAddedToCartState(cart: cart);
+      if (event.cartModel.quantity < event.cartModel.productModel.count) {
+        cart.add(event.cartModel);
+        yield ProductAddedToCartState(
+            cart: cart, uId: DateTime.now().toIso8601String());
+      } else {
+        yield ProductSoldOutState(
+            cart: cart, uId: DateTime.now().toIso8601String());
+      }
     } else if (event is RemoveProductFromCartEvent) {
       CartModelList cart = this.state.cart;
       cart.remove(event.cartModel);
 
       yield ProductRemovedFromCartState(cart: cart);
-    } else if (event is UpdateProductIndexInCartEvent) {
-      CartModelList cart = this.state.cart;
-      cart.updateIndex(event.index, event.cartModel);
-      yield ProductUpdatedInCartState(
-        cart: cart,
-      );
     } else if (event is UpdateProductInCartEvent) {
       CartModelList cart = this.state.cart;
-      cart.update(event.cartModel);
-      yield ProductUpdatedInCartState(
-        cart: cart,
-      );
+
+      if (event.cartModel.quantity <= event.cartModel.productModel.count) {
+        cart.updateIndex(event.index, event.cartModel);
+        yield ProductUpdatedInCartState(
+          cart: cart,
+        );
+      } else {
+        print(event.cartModel.quantity);
+
+        yield ProductSoldOutState(
+            cart: cart, uId: DateTime.now().toIso8601String());
+      }
     }
   }
 }

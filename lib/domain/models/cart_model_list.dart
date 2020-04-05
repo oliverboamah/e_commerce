@@ -13,7 +13,16 @@ class CartModelList {
   CartModelList.initial({@required this.list});
 
   void add(CartModel cartModel) {
-    this.list.add(cartModel);
+    int index = this.indexOf(cartModel);
+    if (index > -1) {
+      this.list[index] = CartModel(
+          productModel: cartModel.productModel,
+          quantity: cartModel.quantity + 1,
+          delivery: cartModel.delivery,
+          status: cartModel.status);
+    } else {
+      this.list.add(cartModel);
+    }
   }
 
   void remove(CartModel cartModel) {
@@ -42,6 +51,15 @@ class CartModelList {
         this.list[index] = cartModel;
       }
     }
+  }
+
+  int indexOf(CartModel cartModel) {
+    for (int i = 0; i < this.list.length; i++) {
+      if (this.list[i].productModel.id == cartModel.productModel.id) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   void updateIndex(int index, CartModel cartModel) {

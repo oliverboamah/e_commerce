@@ -34,76 +34,85 @@ class CartView extends StatelessWidget {
         context: context,
         title: 'Shopping Cart',
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: CartList(
-              cartModelList: cartModelList,
-              onItemClicked: (index) => {},
-              onProductChanged: (int index, CartModel cartModel) {
-                homeBloc.add(UpdateProductInCartEvent(
-                    index: index, cartModel: cartModel));
-                BlocProvider.of<CartBloc>(context)
-                    .add(RefreshCartScreenEvent());
-              },
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: 4.0, horizontal: defaultWidgetPadding),
-            decoration: BoxDecoration(color: colorWhite, boxShadow: [
-              BoxShadow(
-                  color: dividerColor, offset: Offset(0, -0.5), blurRadius: 0.5)
-            ]),
-            child: Column(
+      body: cartModelList.size() < 1
+          ? Center(
+              child: Text('No products added'),
+            )
+          : Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 2.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Total',
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                      Text(
-                        '\$199',
-                        style: Theme.of(context).accentTextTheme.display1,
-                      )
-                    ],
+                Expanded(
+                  child: CartList(
+                    cartModelList: cartModelList,
+                    onItemClicked: (index) => {},
+                    onProductChanged: (int index, CartModel cartModel) {
+                      homeBloc.add(UpdateProductInCartEvent(
+                          index: index, cartModel: cartModel));
+                      BlocProvider.of<CartBloc>(context)
+                          .add(RefreshCartScreenEvent());
+                    },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
-                  child: Row(
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: defaultWidgetPadding),
+                  decoration: BoxDecoration(color: colorWhite, boxShadow: [
+                    BoxShadow(
+                        color: dividerColor,
+                        offset: Offset(0, -0.5),
+                        blurRadius: 0.5)
+                  ]),
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                          child: Container(
-                        margin: EdgeInsets.only(right: 8.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border:
-                                Border.all(color: primaryColor, width: 2.0)),
-                        child: CupertinoButton(
-                          padding: EdgeInsets.all(0),
-                          minSize: shortButtonSize - 4,
-                          child: Text(
-                            'CALL TO ORDER',
-                            style: Theme.of(context).textTheme.display3,
-                          ),
-                          onPressed: () => {},
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Total',
+                              style: Theme.of(context).textTheme.title,
+                            ),
+                            Text(
+                              '\$199',
+                              style: Theme.of(context).accentTextTheme.display1,
+                            )
+                          ],
                         ),
-                      )),
-                      Expanded(
-                        child: CupertinoButton(
-                          minSize: shortButtonSize,
-                          padding: EdgeInsets.all(0),
-                          color: primaryColor,
-                          child: Text(
-                            'COMPLETE YOUR ORDER',
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          onPressed: () => {},
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                                child: Container(
+                              margin: EdgeInsets.only(right: 8.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                      color: primaryColor, width: 2.0)),
+                              child: CupertinoButton(
+                                padding: EdgeInsets.all(0),
+                                minSize: shortButtonSize - 4,
+                                child: Text(
+                                  'CALL TO ORDER',
+                                  style: Theme.of(context).textTheme.display3,
+                                ),
+                                onPressed: () => {},
+                              ),
+                            )),
+                            Expanded(
+                              child: CupertinoButton(
+                                minSize: shortButtonSize,
+                                padding: EdgeInsets.all(0),
+                                color: primaryColor,
+                                child: Text(
+                                  'COMPLETE YOUR ORDER',
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                                onPressed: () => {},
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -111,9 +120,6 @@ class CartView extends StatelessWidget {
                 )
               ],
             ),
-          )
-        ],
-      ),
     );
   }
 }

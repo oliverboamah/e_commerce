@@ -21,9 +21,17 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       yield ShippingAddressLoadedState(
           selectedTabIndex: state.selectedTabIndex,
           shippingAddress: shippingAddressModel);
-    }
-    if (event is TabSelectedEvent) {
-      yield TabSelectedState(selectedTabIndex: event.tabSelectedIndex);
+    } else if (event is TabSelectedEvent) {
+      yield TabSelectedState(
+          selectedTabIndex: event.tabSelectedIndex,
+          shippingAddress: state.shippingAddress);
+    } else if (event is OpenAddressScreenEvent) {
+      print('reher');
+      yield OpenAddressScreenState(
+          selectedTabIndex: state.selectedTabIndex,
+          shippingAddress: state.shippingAddress,
+          title: event.title,
+          uId: DateTime.now().toIso8601String());
     }
   }
 }

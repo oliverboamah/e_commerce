@@ -42,3 +42,22 @@ class ShippingAddressLoadedState extends CheckoutState {
             selectedTabIndex: selectedTabIndex,
             shippingAddress: shippingAddress);
 }
+
+@immutable
+class OpenAddressScreenState extends CheckoutState {
+  final String title;
+  final String uId;
+
+  OpenAddressScreenState(
+      {@required int selectedTabIndex,
+      ShippingAddressModel shippingAddress,
+      this.title,
+      this.uId})
+      : super(
+          selectedTabIndex: selectedTabIndex,
+          shippingAddress: shippingAddress,
+        );
+
+  @override
+  List<Object> get props => [selectedTabIndex, shippingAddress, title, uId];
+}

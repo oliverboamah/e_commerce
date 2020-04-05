@@ -1,4 +1,6 @@
 // flutter import
+import 'package:e_commerce/presentation/features/checkout/checkout_bloc.dart';
+import 'package:e_commerce/presentation/features/checkout/checkout_event.dart';
 import 'package:flutter/cupertino.dart';
 
 // my app imports
@@ -7,6 +9,7 @@ import 'package:e_commerce/presentation/widgets/checkout/address_section.dart';
 import 'package:e_commerce/presentation/widgets/checkout/delivery_method_section.dart';
 import 'package:e_commerce/presentation/widgets/checkout/shipment_section.dart';
 import 'package:e_commerce/domain/models/shipping_address_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DeliveryTab extends StatefulWidget {
   final CartModelList cartModelList;
@@ -36,6 +39,8 @@ class _DeliveryTabState extends State<DeliveryTab> {
                   '${this.widget.shippingAddressModel.phoneNumber1}, ${this.widget.shippingAddressModel.phoneNumber2}',
           trailingTitle:
               this.widget.shippingAddressModel == null ? 'Add' : 'Change',
+          onTrailingTitleTap: (title) => BlocProvider.of<CheckoutBloc>(context)
+              .add(OpenAddressScreenEvent(title: title)),
         ),
         DeliveryMethodSection(),
         ShipmentSection(

@@ -28,7 +28,8 @@ class InputField extends StatelessWidget {
       keyboardType: keyboardType,
       onChanged: (value) => this.onChanged(value),
       decoration: InputDecoration(
-          hintText: hintText,
+          labelText: hintText,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(smallBorderRadius)),
           filled: true,

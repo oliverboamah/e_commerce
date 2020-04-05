@@ -8,9 +8,12 @@ import 'package:e_commerce/config/colors.dart';
 class TertiarySectionHeader extends StatelessWidget {
   final String leadingTitle;
   final String trailingTitle;
+  final Function onTrailingTitleTap;
 
   TertiarySectionHeader(
-      {@required this.leadingTitle, @required this.trailingTitle});
+      {@required this.leadingTitle,
+      @required this.trailingTitle,
+      @required this.onTrailingTitleTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,12 @@ class TertiarySectionHeader extends StatelessWidget {
               this.leadingTitle,
               style: Theme.of(context).textTheme.title,
             ),
-            Text(
-              this.trailingTitle,
-              style: Theme.of(context).accentTextTheme.body1,
+            InkWell(
+              child: Text(
+                this.trailingTitle,
+                style: Theme.of(context).accentTextTheme.body1,
+              ),
+              onTap: () => this.onTrailingTitleTap(),
             )
           ],
         ));

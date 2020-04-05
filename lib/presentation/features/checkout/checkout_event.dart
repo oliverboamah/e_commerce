@@ -31,3 +31,16 @@ class LoadShippingAddressEvent extends CheckoutEvent {
   @override
   String toString() => 'Load Shipping Address Event';
 }
+
+@immutable
+class OpenAddressScreenEvent extends CheckoutEvent {
+  final String title;
+
+  OpenAddressScreenEvent({@required this.title});
+
+  @override
+  List<Object> get props => [title];
+
+  @override
+  String toString() => 'Open Address Screen Event';
+}

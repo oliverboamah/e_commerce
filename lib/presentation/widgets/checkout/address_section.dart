@@ -1,16 +1,21 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/checkout/tertiary_section_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
+import 'package:e_commerce/presentation/widgets/checkout/tertiary_section_header.dart';
 
 class AddressSection extends StatelessWidget {
   final String address;
   final String leadingTitle;
   final String trailingTitle;
+  final Function onTrailingTitleTap;
 
-  AddressSection({this.address, this.leadingTitle, this.trailingTitle});
+  AddressSection(
+      {this.address,
+      this.leadingTitle,
+      this.trailingTitle,
+      this.onTrailingTitleTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class AddressSection extends StatelessWidget {
         TertiarySectionHeader(
           leadingTitle: this.leadingTitle,
           trailingTitle: this.trailingTitle,
+          onTrailingTitleTap: () => this.onTrailingTitleTap(this.trailingTitle),
         ),
         Padding(
           padding: const EdgeInsets.only(

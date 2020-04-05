@@ -7,31 +7,29 @@ import 'package:e_commerce/config/colors.dart';
 import 'package:e_commerce/presentation/widgets/app_bar_with_back_icon.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/config/dimen.dart';
+import 'package:e_commerce/domain/models/shipping_address_model.dart';
 
-class AddressPage extends StatefulWidget {
+class AddressScreen extends StatefulWidget {
   final String appBarTitle;
 
-  AddressPage({@required this.appBarTitle});
+  AddressScreen({@required this.appBarTitle});
 
   @override
-  State<StatefulWidget> createState() => _AddressPageState();
+  State<StatefulWidget> createState() => _AddressScreenState();
 }
 
-class _AddressPageState extends State<AddressPage> {
+class _AddressScreenState extends State<AddressScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  String _firstName;
-  String _lastName;
-  String _address;
-  String _city;
   String _town;
-  String _phoneNumber;
-  String _additionalInfo;
-  String _additionalPhoneNumber;
+  String _city;
 
-  onItemClicked(index) {
-    print(index);
-  }
+  final TextEditingController _firstName = TextEditingController();
+  final TextEditingController _lastName = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _additionalInfo = TextEditingController();
+  final TextEditingController _additionalPhoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class _AddressPageState extends State<AddressPage> {
         backgroundColor: colorWhite,
         appBar: AppBarWithBackIcon(
           context: context,
-          title: this.widget.appBarTitle,
+          title: '${this.widget.appBarTitle} Address',
         ),
         body: Column(
           children: <Widget>[
@@ -68,6 +66,7 @@ class _AddressPageState extends State<AddressPage> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 16.0),
                   child: Form(
+                      autovalidate: true,
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
@@ -76,8 +75,8 @@ class _AddressPageState extends State<AddressPage> {
                               Expanded(
                                 child: InputField(
                                     hintText: 'Firstname',
-                                    onChanged: (value) => this.setState(
-                                        () => this._firstName = value.trim()),
+                                    controller: this._firstName,
+                                    keyboardType: TextInputType.text,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return 'Please enter firstname';
@@ -101,8 +100,8 @@ class _AddressPageState extends State<AddressPage> {
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: InputField(
                                       hintText: 'Lastname',
-                                      onChanged: (value) => this.setState(
-                                          () => this._lastName = value.trim()),
+                                      controller: this._lastName,
+                                      keyboardType: TextInputType.text,
                                       validator: (value) {
                                         if (value.trim().isEmpty) {
                                           return 'Please enter lastname';
@@ -127,8 +126,8 @@ class _AddressPageState extends State<AddressPage> {
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: InputField(
                                       hintText: 'Address',
-                                      onChanged: (value) => this.setState(
-                                          () => this._address = value.trim()),
+                                      keyboardType: TextInputType.text,
+                                      controller: this._address,
                                       validator: (value) {
                                         if (value.trim().isEmpty) {
                                           return 'Please enter address';
@@ -153,10 +152,12 @@ class _AddressPageState extends State<AddressPage> {
                                   padding: const EdgeInsets.only(
                                       top: 8.0, right: 10.0),
                                   child: InputField(
-                                    hintText: 'Additional Info',
-                                    onChanged: (value) => this.setState(() =>
-                                        this._additionalInfo = value.trim()),
-                                  ),
+                                      hintText: 'Additional Info',
+                                      keyboardType: TextInputType.text,
+                                      controller: this._additionalInfo,
+                                      validator: (value) {
+                                        return null;
+                                      }),
                                 ),
                               ),
                             ],
@@ -171,6 +172,10 @@ class _AddressPageState extends State<AddressPage> {
                                     right: 16.0,
                                   ),
                                   child: DropdownButton<String>(
+                                    value: this._city,
+                                    onChanged: (value) => this.setState(() {
+                                      this._city = value;
+                                    }),
                                     style: Theme.of(context).textTheme.title,
                                     underline: Container(
                                       color: secondaryTextColor,
@@ -187,9 +192,6 @@ class _AddressPageState extends State<AddressPage> {
                                         child: new Text(value),
                                       );
                                     }).toList(),
-                                    onChanged: (value) =>
-                                        this.setState(() => this._city = value),
-                                    value: this._city,
                                     isExpanded: true,
                                   ),
                                 ),
@@ -206,6 +208,10 @@ class _AddressPageState extends State<AddressPage> {
                                     right: 16.0,
                                   ),
                                   child: DropdownButton<String>(
+                                    value: this._town,
+                                    onChanged: (value) => this.setState(() {
+                                      this._town = value;
+                                    }),
                                     style: Theme.of(context).textTheme.title,
                                     underline: Container(
                                       color: secondaryTextColor,
@@ -222,9 +228,6 @@ class _AddressPageState extends State<AddressPage> {
                                         child: new Text(value),
                                       );
                                     }).toList(),
-                                    onChanged: (value) =>
-                                        this.setState(() => this._town = value),
-                                    value: this._town,
                                     isExpanded: true,
                                   ),
                                 ),
@@ -238,8 +241,8 @@ class _AddressPageState extends State<AddressPage> {
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: InputField(
                                       hintText: 'Phone number',
-                                      onChanged: (value) => this.setState(() =>
-                                          this._phoneNumber = value.trim()),
+                                      controller: this._phoneNumber,
+                                      keyboardType: TextInputType.phone,
                                       validator: (value) {
                                         if (value.trim().isEmpty) {
                                           return 'Please enter phone number';
@@ -264,11 +267,12 @@ class _AddressPageState extends State<AddressPage> {
                                   padding: const EdgeInsets.only(
                                       right: 10, top: smallSpacing),
                                   child: InputField(
-                                    hintText: 'Additional Phone number',
-                                    onChanged: (value) => this.setState(() =>
-                                        this._additionalPhoneNumber =
-                                            value.trim()),
-                                  ),
+                                      hintText: 'Additional Phone number',
+                                      controller: this._additionalPhoneNumber,
+                                      keyboardType: TextInputType.phone,
+                                      validator: (value) {
+                                        return null;
+                                      }),
                                 ),
                               ),
                             ],
@@ -298,7 +302,19 @@ class _AddressPageState extends State<AddressPage> {
                         style: Theme.of(context).accentTextTheme.display2,
                       ),
                       onPressed: () {
-                        if (this._formKey.currentState.validate()) {}
+                        if (this._formKey.currentState.validate()) {
+                          ShippingAddressModel shippingAddressModel =
+                              ShippingAddressModel(
+                                  firstName: this._firstName.text,
+                                  lastName: this._lastName.text,
+                                  addressLine1: this._address.text,
+                                  addressLine2: this._additionalInfo.text,
+                                  city: this._city,
+                                  town: this._town,
+                                  phoneNumber1: this._phoneNumber.text,
+                                  phoneNumber2: this._phoneNumber.text);
+                          Navigator.pop(context, shippingAddressModel);
+                        }
                       },
                     ),
                   ),

@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/presentation/features/address/address_screen.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
@@ -9,6 +10,7 @@ import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_screen.dart';
 import 'package:e_commerce/presentation/features/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/features/checkout/checkout_screen.dart';
+import 'package:e_commerce/domain/models/shipping_address_model.dart';
 
 class Routes {
   static void goToLoginScreen(BuildContext context) {
@@ -48,5 +50,15 @@ class Routes {
   ) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CheckoutScreen()));
+  }
+
+  static Future<ShippingAddressModel> goToAddressScreenForResult(
+      BuildContext context, String appBarTitle) async {
+    return await Navigator.push(
+        context,
+        MaterialPageRoute<ShippingAddressModel>(
+            builder: (context) => AddressScreen(
+                  appBarTitle: appBarTitle,
+                )));
   }
 }

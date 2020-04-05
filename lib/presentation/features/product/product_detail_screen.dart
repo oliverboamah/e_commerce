@@ -56,6 +56,7 @@ class _ProductDetailWrapperState extends State<ProductDetailWrapper> {
         return BlocListener<ProductDetailBloc, ProductDetailState>(
             listener: (BuildContext context, ProductDetailState state) {
               if (state is ProductAddedToWishlistState) {
+                print(state.isAddedToWishlist);
               } else if (state is ShowDeliveryInfoModalState) {
               } else if (state is OpenCartScreenState) {
                 Routes.goToCartScreen(context);

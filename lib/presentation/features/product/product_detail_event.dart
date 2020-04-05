@@ -27,12 +27,6 @@ class AddProductToWishlistEvent extends ProductDetailEvent {
 }
 
 @immutable
-class AddProductToCartEvent extends ProductDetailEvent {
-  @override
-  String toString() => 'Add Product to Cart Event';
-}
-
-@immutable
 class OpenCartScreenEvent extends ProductDetailEvent {
   @override
   String toString() => 'Open Cart Screen Event';
@@ -45,14 +39,7 @@ class ShowDeliveryInfoModalEvent extends ProductDetailEvent {
 }
 
 @immutable
-class UpdateProductQuantity extends ProductDetailEvent {
-  final int quantity;
-
-  UpdateProductQuantity({@required this.quantity});
-
+class RefreshScreenEvent extends ProductDetailEvent {
   @override
-  List<Object> get props => [quantity];
-
-  @override
-  String toString() => 'Update Product Quantity Event';
+  String toString() => 'Refresh Screen Event';
 }

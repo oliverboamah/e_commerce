@@ -23,10 +23,42 @@ class HomeInitialState extends HomeState {
 
 @immutable
 class OpenCartState extends HomeState {
-  OpenCartState({@required CartModelList cart}) : super(cart: cart);
+  final String uId;
+  OpenCartState({@required CartModelList cart, @required this.uId})
+      : super(cart: cart);
+
+  @override
+  List<Object> get props => [cart, uId];
 }
 
 @immutable
 class ProductAddedToCartState extends HomeState {
-  ProductAddedToCartState({@required CartModelList cart}) : super(cart: cart);
+  final String uId;
+
+  ProductAddedToCartState({@required CartModelList cart, this.uId})
+      : super(cart: cart);
+
+  @override
+  List<Object> get props => [cart, uId];
+}
+
+@immutable
+class ProductRemovedFromCartState extends HomeState {
+  ProductRemovedFromCartState({@required CartModelList cart})
+      : super(cart: cart);
+}
+
+@immutable
+class ProductUpdatedInCartState extends HomeState {
+  ProductUpdatedInCartState({@required CartModelList cart}) : super(cart: cart);
+}
+
+@immutable
+class ProductSoldOutState extends HomeState {
+  final String uId;
+  ProductSoldOutState({@required CartModelList cart, @required this.uId})
+      : super(cart: cart);
+
+  @override
+  List<Object> get props => [cart, uId];
 }

@@ -7,85 +7,66 @@ import 'package:equatable/equatable.dart';
 @immutable
 abstract class ProductDetailState extends Equatable {
   final bool isAddedToWishlist;
-  final bool isAddedToCart;
-  final int quantity;
 
-  ProductDetailState(
-      {@required this.isAddedToWishlist,
-      @required this.isAddedToCart,
-      this.quantity});
+  ProductDetailState({
+    @required this.isAddedToWishlist,
+  });
 
   @override
-  List<Object> get props => [isAddedToWishlist, isAddedToCart, quantity];
+  List<Object> get props => [isAddedToWishlist];
 }
 
 @immutable
 class ProductDetailInitialState extends ProductDetailState {
-  ProductDetailInitialState(
-      {@required bool isAddedToWishlist,
-      @required bool isAddedToCart,
-      @required int quantity})
-      : super(
-            isAddedToWishlist: isAddedToWishlist,
-            isAddedToCart: isAddedToCart,
-            quantity: quantity);
+  ProductDetailInitialState({
+    @required bool isAddedToWishlist,
+  }) : super(
+          isAddedToWishlist: isAddedToWishlist,
+        );
 }
 
 @immutable
 class ProductAddedToWishlistState extends ProductDetailState {
-  ProductAddedToWishlistState(
-      {@required bool isAddedToWishlist,
-      @required bool isAddedToCart,
-      @required int quantity})
+  ProductAddedToWishlistState({@required bool isAddedToWishlist})
       : super(
-            isAddedToWishlist: isAddedToWishlist,
-            isAddedToCart: isAddedToCart,
-            quantity: quantity);
-}
-
-@immutable
-class ProductAddedToCartState extends ProductDetailState {
-  ProductAddedToCartState(
-      {@required bool isAddedToWishlist,
-      @required bool isAddedToCart,
-      @required int quantity})
-      : super(
-            isAddedToWishlist: isAddedToWishlist,
-            isAddedToCart: isAddedToCart,
-            quantity: quantity);
+          isAddedToWishlist: isAddedToWishlist,
+        );
 }
 
 @immutable
 class OpenCartScreenState extends ProductDetailState {
   final String uId;
 
-  OpenCartScreenState(
-      {@required bool isAddedToWishlist,
-      @required bool isAddedToCart,
-      @required int quantity,
-      this.uId})
+  OpenCartScreenState({@required bool isAddedToWishlist, this.uId})
       : super(
-            isAddedToWishlist: isAddedToWishlist,
-            isAddedToCart: isAddedToCart,
-            quantity: quantity);
+          isAddedToWishlist: isAddedToWishlist,
+        );
   @override
-  List<Object> get props => [isAddedToWishlist, isAddedToCart, quantity, uId];
+  List<Object> get props => [isAddedToWishlist, uId];
 }
 
 @immutable
 class ShowDeliveryInfoModalState extends ProductDetailState {
   final String uId;
 
-  ShowDeliveryInfoModalState(
-      {@required bool isAddedToWishlist,
-      @required bool isAddedToCart,
-      @required int quantity,
-      this.uId})
+  ShowDeliveryInfoModalState({@required bool isAddedToWishlist, this.uId})
       : super(
-            isAddedToWishlist: isAddedToWishlist,
-            isAddedToCart: isAddedToCart,
-            quantity: quantity);
+          isAddedToWishlist: isAddedToWishlist,
+        );
 
   @override
-  List<Object> get props => [isAddedToWishlist, isAddedToCart, quantity, uId];
+  List<Object> get props => [isAddedToWishlist, uId];
+}
+
+@immutable
+class RefreshedScreenState extends ProductDetailState {
+  final String uId;
+
+  RefreshedScreenState({@required bool isAddedToWishlist, this.uId})
+      : super(
+          isAddedToWishlist: isAddedToWishlist,
+        );
+
+  @override
+  List<Object> get props => [isAddedToWishlist, uId];
 }

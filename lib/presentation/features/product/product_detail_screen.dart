@@ -1,9 +1,4 @@
 // flutter imports
-import 'package:e_commerce/domain/models/cart_model.dart';
-import 'package:e_commerce/presentation/features/home/home_bloc.dart';
-import 'package:e_commerce/presentation/features/home/home_event.dart';
-import 'package:e_commerce/presentation/features/home/home_screen.dart';
-import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 import 'package:flutter/widgets.dart';
 
 // third party imports
@@ -15,6 +10,10 @@ import 'package:e_commerce/presentation/features/product/product_detail_bloc.dar
 import 'package:e_commerce/presentation/features/product/product_detail_state.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/config/routes.dart';
+import 'package:e_commerce/domain/models/cart_model.dart';
+import 'package:e_commerce/presentation/features/home/home_bloc.dart';
+import 'package:e_commerce/presentation/features/home/views/home_context.dart';
+import 'package:e_commerce/presentation/widgets/messages.dart';
 
 class ProductDetalScreen extends StatefulWidget {
   final ProductModel productModel;
@@ -25,21 +24,15 @@ class ProductDetalScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _ProductDetalScreenState();
 }
 
-class _ProductDetalScreenState extends State<ProductDetalScreen>
-    with AutomaticKeepAliveClientMixin {
+class _ProductDetalScreenState extends State<ProductDetalScreen> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     return BlocProvider<ProductDetailBloc>(
         create: (BuildContext context) => ProductDetailBloc(),
         child: ProductDetailWrapper(
           productModel: this.widget.productModel,
         ));
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class ProductDetailWrapper extends StatefulWidget {
@@ -58,25 +51,30 @@ class _ProductDetailWrapperState extends State<ProductDetailWrapper> {
 
     return BlocBuilder<ProductDetailBloc, ProductDetailState>(
       builder: (BuildContext context, ProductDetailState state) {
+        CartModel _cartModel =
+            homeBloc.state.cart.search(this.widget.productModel);
+
         return BlocListener<ProductDetailBloc, ProductDetailState>(
             listener: (BuildContext context, ProductDetailState state) {
               if (state is ProductAddedToWishlistState) {
-                print(state.isAddedToWishlist);
-              } else if (state is ProductAddedToCartState) {
-                CartModel cartModel = CartModel(
-                    productModel: this.widget.productModel,
-                    quantity: state.quantity);
-                homeBloc.add(AddProductToCartEvent(cartModel: cartModel));
-                print(state.isAddedToCart);
+                if (state.isAddedToWishlist) {
+                  Messages(
+                    message: 'Product has been added to your Wishlist',
+                    messageType: MessageType.success,
+                  ).show(context);
+                } else {
+                  Messages(
+                    message: 'Product has been removed from your Wishlist',
+                    messageType: MessageType.info,
+                  ).show(context);
+                }
               } else if (state is ShowDeliveryInfoModalState) {
-                print('Show Delivery Info Modal State');
               } else if (state is OpenCartScreenState) {
                 Routes.goToCartScreen(context);
-                print('Open Cart Screen State');
-              }
+              } else if (state is RefreshedScreenState) {}
             },
             child: ProductDetailView(
-              productModel: this.widget.productModel,
+              cartModel: _cartModel,
             ));
       },
     );

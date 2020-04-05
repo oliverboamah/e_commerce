@@ -68,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
               decoration:
                   BoxDecoration(shape: BoxShape.circle, color: primaryColor),
               child: Text(
-                '2',
+                '${BlocProvider.of<HomeBloc>(HomeContext.context).state.cart.size()}',
                 style: TextStyle(color: colorWhite),
               ),
             )

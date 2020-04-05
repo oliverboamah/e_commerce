@@ -19,6 +19,6 @@ class Messages extends Flushbar {
                 ? _successColors
                 : messageType == MessageType.error ? _errorColors : _infoColors,
           ),
-          duration: Duration(seconds: 4),
+          duration: Duration(seconds: 3),
         );
 }

@@ -8,6 +8,7 @@ import 'package:e_commerce/presentation/features/home/home_screen.dart';
 import 'package:e_commerce/domain/models/product_model.dart';
 import 'package:e_commerce/presentation/features/product/product_detail_screen.dart';
 import 'package:e_commerce/presentation/features/cart/cart_screen.dart';
+import 'package:e_commerce/presentation/features/checkout/checkout_screen.dart';
 
 class Routes {
   static void goToLoginScreen(BuildContext context) {
@@ -40,5 +41,12 @@ class Routes {
   ) async {
     return await Navigator.push(
         context, MaterialPageRoute<String>(builder: (context) => CartScreen()));
+  }
+
+  static void goToCheckoutScreen(
+    BuildContext context,
+  ) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CheckoutScreen()));
   }
 }

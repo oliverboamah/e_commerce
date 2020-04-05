@@ -1,10 +1,10 @@
 // flutter imports
-import 'package:e_commerce/presentation/widgets/checkout/checkout_tab_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // my app imports
 import 'package:e_commerce/config/colors.dart';
+import 'package:e_commerce/presentation/widgets/checkout/checkout_tab_item.dart';
 
 class CheckoutAppBar extends StatefulWidget {
   final int selectedIndex;

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/presentation/features/cart/cart_bloc.dart';
 import 'package:e_commerce/presentation/features/cart/cart_state.dart';
 import 'package:e_commerce/presentation/features/cart/views/cart_view.dart';
+import 'package:e_commerce/config/routes.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -37,7 +38,9 @@ class _CartWrapperState extends State<CartWrapper> {
         return BlocListener<CartBloc, CartState>(
           listener: (BuildContext context, CartState state) {
             if (state is CallToOrderState) {
-            } else if (state is CompleteOrderState) {}
+            } else if (state is CompleteOrderState) {
+              Routes.goToCheckoutScreen(context);
+            }
           },
           child: CartView(),
         );

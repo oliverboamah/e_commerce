@@ -109,7 +109,9 @@ class CartView extends StatelessWidget {
                                   'COMPLETE YOUR ORDER',
                                   style: Theme.of(context).textTheme.caption,
                                 ),
-                                onPressed: () => {},
+                                onPressed: () =>
+                                    BlocProvider.of<CartBloc>(context)
+                                        .add(CompleteOrderEvent()),
                               ),
                             )
                           ],

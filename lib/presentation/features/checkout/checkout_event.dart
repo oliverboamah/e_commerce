@@ -22,3 +22,12 @@ class TabSelectedEvent extends CheckoutEvent {
   @override
   String toString() => 'Tab Selected Event';
 }
+
+@immutable
+class LoadShippingAddressEvent extends CheckoutEvent {
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Load Shipping Address Event';
+}

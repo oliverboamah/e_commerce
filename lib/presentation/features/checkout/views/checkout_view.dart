@@ -35,6 +35,12 @@ class _CheckoutViewState extends State<CheckoutView> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<CheckoutBloc>(context).add(LoadShippingAddressEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final CheckoutBloc checkoutBloc = BlocProvider.of<CheckoutBloc>(context);
 
@@ -58,6 +64,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                 children: [
                   DeliveryTab(
                     cartModelList: this.widget.cartModelList,
+                    shippingAddressModel: checkoutBloc.state.shippingAddress,
                   ),
                   SummaryTab(
                     cartModelList: this.widget.cartModelList,

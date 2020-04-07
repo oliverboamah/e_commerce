@@ -1,3 +1,6 @@
+// dart imports
+import 'dart:convert';
+
 // flutter imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +11,7 @@ import 'package:e_commerce/presentation/widgets/app_bar_with_back_icon.dart';
 import 'package:e_commerce/presentation/widgets/input_field.dart';
 import 'package:e_commerce/config/dimen.dart';
 import 'package:e_commerce/domain/models/shipping_address_model.dart';
+import 'package:e_commerce/presentation/widgets/dropdown.dart';
 
 class AddressScreen extends StatefulWidget {
   final String appBarTitle;
@@ -21,7 +25,7 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  String _town;
+  String _region;
   String _city;
 
   final TextEditingController _firstName = TextEditingController();
@@ -30,6 +34,23 @@ class _AddressScreenState extends State<AddressScreen> {
   final TextEditingController _phoneNumber = TextEditingController();
   final TextEditingController _additionalInfo = TextEditingController();
   final TextEditingController _additionalPhoneNumber = TextEditingController();
+
+  Map<String, dynamic> _location;
+
+  @override
+  void initState() {
+    super.initState();
+    loadLocationData();
+  }
+
+  void loadLocationData() async {
+    String data = await DefaultAssetBundle.of(context)
+        .loadString("assets/data/location.json");
+
+    this.setState(() {
+      this._location = json.decode(data);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,73 +186,42 @@ class _AddressScreenState extends State<AddressScreen> {
                           Row(
                             children: <Widget>[
                               Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 8.0,
-                                    left: 6.0,
-                                    right: 16.0,
-                                  ),
-                                  child: DropdownButton<String>(
-                                    value: this._city,
-                                    onChanged: (value) => this.setState(() {
-                                      this._city = value;
+                                child: Dropdown(
+                                    isFieldRequired: false,
+                                    options: this._location != null
+                                        ? this._location.keys.toList()
+                                        : [''],
+                                    hint: 'Region',
+                                    value: this._region,
+                                    onChanged: (value) {
+                                      this.setState(() {
+                                        this._region = value;
+                                        this._city = '';
+                                      });
                                     }),
-                                    style: Theme.of(context).textTheme.title,
-                                    underline: Container(
-                                      color: secondaryTextColor,
-                                      height: 1,
-                                    ),
-                                    items: <String>[
-                                      'Greater Accra',
-                                      'Kumasi',
-                                      'Sunyani',
-                                      'Obuasi'
-                                    ].map((String value) {
-                                      return new DropdownMenuItem<String>(
-                                        value: value,
-                                        child: new Text(value),
-                                      );
-                                    }).toList(),
-                                    isExpanded: true,
-                                  ),
-                                ),
                               ),
                             ],
                           ),
                           Row(
                             children: <Widget>[
                               Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 8.0,
-                                    left: 6.0,
-                                    right: 16.0,
-                                  ),
-                                  child: DropdownButton<String>(
-                                    value: this._town,
-                                    onChanged: (value) => this.setState(() {
-                                      this._town = value;
-                                    }),
-                                    style: Theme.of(context).textTheme.title,
-                                    underline: Container(
-                                      color: secondaryTextColor,
-                                      height: 1,
-                                    ),
-                                    items: <String>[
-                                      'Dzorwulu',
-                                      'Madina',
-                                      'Tema',
-                                      'Lapaz'
-                                    ].map((String value) {
-                                      return new DropdownMenuItem<String>(
-                                        value: value,
-                                        child: new Text(value),
-                                      );
-                                    }).toList(),
-                                    isExpanded: true,
-                                  ),
-                                ),
-                              ),
+                                  child: Dropdown(
+                                isFieldRequired: false,
+                                hint: 'City',
+                                options: this._location != null &&
+                                        this._region != null
+                                    ? [''] +
+                                        this
+                                            ._location[this._region]
+                                            .cast<String>()
+                                    : [''],
+                                value: this._city,
+                                onChanged: (value) {
+                                  this.setState(() {
+                                    this._city = value;
+                                  });
+                                },
+                              )),
                             ],
                           ),
                           Row(
@@ -309,10 +299,11 @@ class _AddressScreenState extends State<AddressScreen> {
                                   lastName: this._lastName.text,
                                   addressLine1: this._address.text,
                                   addressLine2: this._additionalInfo.text,
+                                  region: this._region,
                                   city: this._city,
-                                  town: this._town,
                                   phoneNumber1: this._phoneNumber.text,
-                                  phoneNumber2: this._phoneNumber.text);
+                                  phoneNumber2:
+                                      this._additionalPhoneNumber.text);
                           Navigator.pop(context, shippingAddressModel);
                         }
                       },

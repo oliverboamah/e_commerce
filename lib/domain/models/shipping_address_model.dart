@@ -7,8 +7,8 @@ class ShippingAddressModel {
   final String lastName;
   final String addressLine1;
   final String addressLine2;
+  final String region;
   final String city;
-  final String town;
   final String phoneNumber1;
   final String phoneNumber2;
 
@@ -17,8 +17,8 @@ class ShippingAddressModel {
       @required this.lastName,
       @required this.addressLine1,
       this.addressLine2,
+      this.region,
       this.city,
-      this.town,
       @required this.phoneNumber1,
       this.phoneNumber2});
 }

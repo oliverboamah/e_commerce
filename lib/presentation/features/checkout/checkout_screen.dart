@@ -12,6 +12,7 @@ import 'package:e_commerce/presentation/features/home/home_bloc.dart';
 import 'package:e_commerce/presentation/features/home/views/home_context.dart';
 import 'package:e_commerce/config/routes.dart';
 import 'package:e_commerce/domain/models/shipping_address_model.dart';
+import 'package:e_commerce/presentation/features/checkout/checkout_event.dart';
 
 class CheckoutScreen extends StatelessWidget {
   @override
@@ -23,7 +24,11 @@ class CheckoutScreen extends StatelessWidget {
           if (state is OpenAddressScreenState) {
             Routes.goToAddressScreenForResult(context, state.title)
                 .then((ShippingAddressModel shippingAddressModel) {
-              print(shippingAddressModel);
+              if (shippingAddressModel != null) {
+                BlocProvider.of<CheckoutBloc>(context).add(
+                    UpdateShippingAddressEvent(
+                        shippingAddressModel: shippingAddressModel));
+              }
             });
           }
         },

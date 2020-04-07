@@ -35,7 +35,7 @@ class _DeliveryTabState extends State<DeliveryTab> {
                   '${this.widget.shippingAddressModel.lastName}\n' +
                   '${this.widget.shippingAddressModel.addressLine1}\n' +
                   '${this.widget.shippingAddressModel.addressLine2}\n' +
-                  '${this.widget.shippingAddressModel.town}, ${this.widget.shippingAddressModel.city}\n' +
+                  '${this.widget.shippingAddressModel.region}, ${this.widget.shippingAddressModel.city}\n' +
                   '${this.widget.shippingAddressModel.phoneNumber1}, ${this.widget.shippingAddressModel.phoneNumber2}',
           trailingTitle:
               this.widget.shippingAddressModel == null ? 'Add' : 'Change',

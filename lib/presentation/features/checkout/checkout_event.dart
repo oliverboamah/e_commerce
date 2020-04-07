@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/domain/models/shipping_address_model.dart';
 import 'package:flutter/material.dart';
 
 // third party imports
@@ -43,4 +44,17 @@ class OpenAddressScreenEvent extends CheckoutEvent {
 
   @override
   String toString() => 'Open Address Screen Event';
+}
+
+@immutable
+class UpdateShippingAddressEvent extends CheckoutEvent {
+  final ShippingAddressModel shippingAddressModel;
+
+  UpdateShippingAddressEvent({@required this.shippingAddressModel});
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Update Shipping Address Event';
 }

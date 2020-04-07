@@ -26,11 +26,15 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
           selectedTabIndex: event.tabSelectedIndex,
           shippingAddress: state.shippingAddress);
     } else if (event is OpenAddressScreenEvent) {
-      print('reher');
       yield OpenAddressScreenState(
           selectedTabIndex: state.selectedTabIndex,
           shippingAddress: state.shippingAddress,
           title: event.title,
+          uId: DateTime.now().toIso8601String());
+    } else if (event is UpdateShippingAddressEvent) {
+      yield ShippingAddressUpdatedState(
+          selectedTabIndex: state.selectedTabIndex,
+          shippingAddress: event.shippingAddressModel,
           uId: DateTime.now().toIso8601String());
     }
   }

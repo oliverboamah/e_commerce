@@ -31,9 +31,12 @@ class ProductItemView extends StatelessWidget {
             SizedBox(
               height: 100,
               width: 100,
-              child: Image.asset(
-                this.productModel.images[0],
-                fit: BoxFit.fill,
+              child: Hero(
+                tag: "product_${productModel.id}",
+                child: Image.asset(
+                  this.productModel.images[0],
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             Text(

@@ -14,14 +14,12 @@ import 'package:e_commerce/presentation/widgets/pk_skeleton.dart';
 import 'package:e_commerce/config/routes.dart';
 
 class Category1View extends StatefulWidget {
-  
   @override
   State<StatefulWidget> createState() => _Category1ViewState();
 }
 
 class _Category1ViewState extends State<Category1View>
     with AutomaticKeepAliveClientMixin {
-  
   @override
   Widget build(BuildContext context) {
     super.build(context);

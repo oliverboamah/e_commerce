@@ -51,8 +51,11 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       ),
       body: Column(
         children: <Widget>[
-          CarouselWithIndicator(
-            imageList: this.widget.cartModel.productModel.images,
+          Hero(
+            tag: "product_${this.widget.cartModel.productModel.id}",
+            child: CarouselWithIndicator(
+              imageList: this.widget.cartModel.productModel.images,
+            ),
           ),
           Expanded(
             child: Container(

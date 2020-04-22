@@ -45,7 +45,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
   void loadLocationData() async {
     String data = await DefaultAssetBundle.of(context)
-        .loadString("assets/data/location.json");
+        .loadString("assets/data/cities.json");
 
     this.setState(() {
       this._location = json.decode(data);

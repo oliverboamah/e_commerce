@@ -1,4 +1,5 @@
 // flutter imports
+import 'package:e_commerce/presentation/features/account/login/login_screen.dart';
 import 'package:e_commerce/presentation/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: HomeScreen(),
+          body: LoginScreen(),
         ));
   }
 }
